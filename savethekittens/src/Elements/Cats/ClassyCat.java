@@ -6,7 +6,7 @@ public class ClassyCat implements Cat {
 	private int posX;
 	private int posY;
 	private int speed;
-	
+
 	@Override
 	public int getPosX() {
 		return posX;
@@ -31,7 +31,7 @@ public class ClassyCat implements Cat {
 	@Override
 	public void edgeCollision() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 }
