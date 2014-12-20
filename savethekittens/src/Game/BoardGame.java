@@ -5,9 +5,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-import Elements.Cat;
-import Elements.IBomb;
 import Elements.Wall;
+import Elements.Bombs.IBomb;
+import Elements.Cats.Cat;
 
 public class BoardGame {
 	private final List<Wall> walls;

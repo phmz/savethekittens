@@ -1,12 +1,21 @@
 package Elements.Cats;
 
-import Elements.Cat;
+import org.jbox2d.dynamics.Fixture;
 
-public class GriffuCat implements Cat {
+import Elements.Wall;
+
+
+public class ClawedCat implements Cat {
 	private int posX;
 	private int posY;
 	private int speed;
+	private final Fixture fixture;
 
+	public ClawedCat() {
+		posX = -1;
+		posY = -1;
+		fixture = new Fixture();
+	}
 	@Override
 	public int getPosX() {
 		return posX;
@@ -32,5 +41,10 @@ public class GriffuCat implements Cat {
 	public void edgeCollision() {
 		// TODO Auto-generated method stub
 
+	}
+	@Override
+	public void addJointure(Wall... walls) {
+		// TODO Auto-generated method stub
+		
 	}
 }

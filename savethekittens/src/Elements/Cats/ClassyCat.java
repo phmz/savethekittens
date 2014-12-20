@@ -1,12 +1,22 @@
 package Elements.Cats;
 
-import Elements.Cat;
+import org.jbox2d.dynamics.Fixture;
+
+import Elements.Wall;
+
 
 public class ClassyCat implements Cat {
 	private int posX;
 	private int posY;
 	private int speed;
+	private final Fixture fixture;
 
+	public ClassyCat() {
+		posX = -1;
+		posY = -1;
+		fixture = new Fixture();
+	}
+	
 	@Override
 	public int getPosX() {
 		return posX;
@@ -32,6 +42,13 @@ public class ClassyCat implements Cat {
 	public void edgeCollision() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void addJointure(Wall... walls) {
+		for(Wall wall:walls) {
+			// TO DO
+		}
 	}
 
 }

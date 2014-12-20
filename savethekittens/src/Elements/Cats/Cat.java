@@ -1,4 +1,6 @@
-package Elements;
+package Elements.Cats;
+
+import Elements.Wall;
 
 public interface Cat {
 	/**
@@ -34,4 +36,9 @@ public interface Cat {
 	 */
 	void edgeCollision();
 
+	/**
+	 * Adds a jointure between walls and the cat
+	 * @param walls list of the walls
+	 */
+	void addJointure(Wall...walls);
 }

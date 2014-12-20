@@ -1,6 +1,5 @@
 package Elements.Bombs;
 
-import Elements.IBomb;
 
 public class Bomb implements IBomb {
 
