@@ -4,27 +4,36 @@ import org.jbox2d.dynamics.Fixture;
 
 import Elements.Wall;
 
-
 public class ClassyCat implements Cat {
-	private int posX;
-	private int posY;
-	private int speed;
-	private final Fixture fixture;
+	private final Body body;
+    private boolean saved;
 
-	public ClassyCat() {
-		posX = -1;
-		posY = -1;
-		fixture = new Fixture();
+	public ClassyCat(Body body) {
+        saved = false;
+		this.body = body;
 	}
 	
+    public static void createAClassyCat() {
+        CircleShape circ = new CircleShape();
+        BodyDef bod = new BodyDef();
+        bod.type = BodyType.DYNAMIC;
+        FixtureDef fd = new FixtureDef();
+        fd.shape = circ;
+        bod.position = new Vec2(0, HEIGHT/2);
+        Body myBody = getWorld().createBody(bod);
+        myBody.createFixture(fd);
+        myBody.setSleepingAllowed(true);
+        return new ClassyCat(body);
+    }
+    
 	@Override
 	public int getPosX() {
-		return posX;
+		return body.getPosition().x;
 	}
 
 	@Override
 	public int getPosY() {
-		return posY;
+		return body.getPosition().y;
 	}
 
 	@Override
@@ -34,8 +43,7 @@ public class ClassyCat implements Cat {
 
 	@Override
 	public boolean isSafe() {
-		// TODO Auto-generated method stub
-		return false;
+		return saved;
 	}
 
 	@Override
