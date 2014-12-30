@@ -11,6 +11,8 @@ import Elements.Cats.Cat;
 import Elements.Cats.ClassyCat;
 import Elements.Cats.ClawedCat;
 import Elements.Cats.GymCat;
+import Elements.Guns.Gun;
+import Elements.Guns.SimpleGun;
 import Game.BoardGame;
 import Interface.GUI;
 import fr.umlv.zen4.Application;
@@ -40,13 +42,17 @@ public class Main {
             Wall wall = Wall.createAWall(5f, 5f, world);
         	List<Cat> cats = new ArrayList<Cat>();
     		
-            Cat cat = ClassyCat.createAClassyCat(world);
-            Cat cat2 = ClawedCat.createAClawedCat(world);
-            Cat cat3 = GymCat.createAGymCat(world);
+        	float posCat = 0;
+            Cat cat = ClassyCat.createAClassyCat(world, posCat);
+            posCat+=100f;
+            Cat cat2 = ClawedCat.createAClawedCat(world, posCat);
+            posCat+=100f;
+            Cat cat3 = GymCat.createAGymCat(world, posCat);
             cats.add(cat);
             cats.add(cat2);
             cats.add(cat3);
-            BoardGame game = new BoardGame(wall, cats);
+            Gun gun = new SimpleGun();
+            BoardGame game = new BoardGame(wall, cats, gun);
             
 			// get the size of the screen
 			ScreenInfo screenInfo = context.getScreenInfo();
@@ -57,7 +63,6 @@ public class Main {
 			GUI gui = new GUI();
 			//gui.loadingScreen(context, WIDTH, HEIGHT);
 			gui.renderLevel(context, WIDTH, HEIGHT, game);
-
             
 			for(;;) {
 				MotionEvent event;

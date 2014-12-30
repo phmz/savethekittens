@@ -10,14 +10,14 @@ public interface Cat {
 	 * 
 	 * @return coordonate x
 	 */
-	int getPosX();
+	float getPosX();
 
 	/**
 	 * Returns the vertical position of the cat.
 	 * 
 	 * @return coordonate y
 	 */
-	int getPosY();
+	float getPosY();
 
 	/**
 	 * Returns true if the cat is in a net.

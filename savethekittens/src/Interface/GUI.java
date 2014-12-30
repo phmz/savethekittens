@@ -24,6 +24,7 @@ public class GUI {
 			if (boardgame != null) {
 				renderWalls(boardgame, graphics);
 				renderCats(boardgame, graphics);
+				renderGun(boardgame, graphics);
 			}
 		});
 	}
@@ -48,11 +49,10 @@ public class GUI {
 
 	private void renderCat(Graphics2D graphics, Cat cat) {
 		graphics.setColor(cat.getColor());		
-		graphics.fill(new Ellipse2D.Float(100f,100f,cat.getPosX(), cat.getPosY()));
+		graphics.fill(new Ellipse2D.Float(cat.getPosX(), cat.getPosY(), 100f, 100f));
 	}
 
-	public void loadingScreen(ApplicationContext context, float width,
-			float height) {
+	public void loadingScreen(ApplicationContext context, float width, float height) {
 		context.renderFrame((graphics, contentLost) -> {
 			if (contentLost) { // we need to render the whole screen
 				graphics.setColor(Color.BLACK);
@@ -62,5 +62,10 @@ public class GUI {
 			graphics.setColor(Color.WHITE);
 			graphics.drawString("Bomb'o Cat", width / 2, height / 2);
 		});
+	}
+	
+	public void renderGun(BoardGame boardGame, Graphics2D graphics) {
+		graphics.setColor(boardGame.getGun().getColor());
+		graphics.fill(new Rectangle2D.Float(boardGame.getGun().getX(), boardGame.getGun().getY(), 100f, 50f));
 	}
 }

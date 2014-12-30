@@ -9,10 +9,10 @@ import java.util.List;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 
-import Elements.Gun;
 import Elements.Wall;
 import Elements.Bombs.IBomb;
 import Elements.Cats.Cat;
+import Elements.Guns.Gun;
 
 public class BoardGame {
 	private final List<Wall> walls;
@@ -28,12 +28,12 @@ public class BoardGame {
 		this.gun = gun;
 	}
 	
-	public BoardGame(Wall wall, List<Cat> cats) {
+	public BoardGame(Wall wall, List<Cat> cats, Gun gun) {
 		walls = new ArrayList<Wall>();
 		walls.add(wall);
 		this.cats = cats;
 		this.bombs = null;
-		this.gun = null;
+		this.gun = gun;
 	}
 
 	public static BoardGame createABoardGame(Path path) throws IOException {
