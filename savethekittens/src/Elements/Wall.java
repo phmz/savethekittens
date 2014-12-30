@@ -6,25 +6,37 @@ import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
+import org.jbox2d.dynamics.World;
 
 public class Wall {
     private final Body body;
+    private final float width = 50.0f;
+    private final float height = 50.0f;
     
     public Wall(Body body) {
         this.body = body;
     }
     
-    public static void createAWall(float x, float y) {
+    public float getWidth() {
+		return width;
+	}
+    
+    public float getHeight() {
+		return height;
+	}
+    
+    public static Wall createAWall(float x, float y, World world) {
         PolygonShape poly = new PolygonShape();
-        poly.setAsBox(20.0f, 20.0f);
+        poly.setAsBox(50.0f, 50.0f);
         BodyDef bd = new BodyDef();
         bd.type = BodyType.STATIC;
         bd.position = new Vec2(x, y);
-        Body myBody = getWorld().createBody(bd);
+        Body myBody = world.createBody(bd);
         FixtureDef fd = new FixtureDef();
         fd.shape = poly;
         fd.friction = 1.0f;
         myBody.createFixture(fd);
+        return new Wall(myBody);
     }
 
 	public int getPosX() {

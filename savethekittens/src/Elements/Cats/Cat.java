@@ -1,5 +1,7 @@
 package Elements.Cats;
 
+import java.awt.Color;
+
 import Elements.Wall;
 
 public interface Cat {
@@ -34,4 +36,6 @@ public interface Cat {
 	 * @param walls list of the walls
 	 */
 	void addJointure(Wall...walls);
+
+	Color getColor();
 }
