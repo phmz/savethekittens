@@ -18,13 +18,6 @@ public interface Cat {
 	int getPosY();
 
 	/**
-	 * Returns the acceleration vector of the cat.
-	 * 
-	 * @return the acceleration
-	 */
-	int getAccelaration();
-
-	/**
 	 * Returns true if the cat is in a net.
 	 * 
 	 * @return true if the cat is in a net, false otherwise

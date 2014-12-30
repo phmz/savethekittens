@@ -18,4 +18,8 @@ public interface IBomb {
 	 * @return the time left before the bomb explodes
 	 */
 	int getTime();
+
+	void setX(int x);
+
+	void setY(int y);
 }

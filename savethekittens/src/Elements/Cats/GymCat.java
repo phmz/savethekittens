@@ -1,6 +1,11 @@
 package Elements.Cats;
 
-import org.jbox2d.dynamics.Fixture;
+import org.jbox2d.collision.shapes.CircleShape;
+import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.Body;
+import org.jbox2d.dynamics.BodyDef;
+import org.jbox2d.dynamics.BodyType;
+import org.jbox2d.dynamics.FixtureDef;
 
 import Elements.Wall;
 
@@ -13,7 +18,7 @@ public class GymCat implements Cat {
         this.body = body;
 	}
     
-    public static void createAGymCat() {
+    public static GymCat createAGymCat() {
         CircleShape circ = new CircleShape();
         BodyDef bod = new BodyDef();
         bod.type = BodyType.DYNAMIC;
@@ -23,22 +28,17 @@ public class GymCat implements Cat {
         Body myBody = getWorld().createBody(bod);
         myBody.createFixture(fd);
         myBody.setSleepingAllowed(true);
-        return new GymCat(body);
+        return new GymCat(myBody);
     }
 	
 	@Override
 	public int getPosX() {
-		return body.getPosition().x;
+		return (int) body.getPosition().x;
 	}
 
 	@Override
 	public int getPosY() {
-		return body.getPosition().y;
-	}
-
-	@Override
-	public int getAccelaration() {
-		return speed;
+		return (int) body.getPosition().y;
 	}
 
 	@Override

@@ -1,6 +1,5 @@
 package Elements.Bombs;
 
-
 public class Bomb implements IBomb {
 
 	@Override
@@ -19,6 +18,18 @@ public class Bomb implements IBomb {
 	public int getTime() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void setX(int x) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setY(int y) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

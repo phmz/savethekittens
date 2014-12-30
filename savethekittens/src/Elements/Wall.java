@@ -1,5 +1,12 @@
 package Elements;
 
+import org.jbox2d.collision.shapes.PolygonShape;
+import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.Body;
+import org.jbox2d.dynamics.BodyDef;
+import org.jbox2d.dynamics.BodyType;
+import org.jbox2d.dynamics.FixtureDef;
+
 public class Wall {
     private final Body body;
     
@@ -7,7 +14,7 @@ public class Wall {
         this.body = body;
     }
     
-    public static createAWall(float x, float y) {
+    public static void createAWall(float x, float y) {
         PolygonShape poly = new PolygonShape();
         poly.setAsBox(20.0f, 20.0f);
         BodyDef bd = new BodyDef();
@@ -21,10 +28,10 @@ public class Wall {
     }
 
 	public int getPosX() {
-		return body.getPosition().x;
+		return (int) body.getPosition().x;
 	}
 
 	public int getPosY() {
-		return body.getPosition().y;
+		return (int) body.getPosition().y;
 	}
 }

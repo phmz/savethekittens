@@ -57,4 +57,9 @@ public class BoardGame {
         pickingBomb.setX(x);
         pickingBomb.setY(y);
     }
+
+	public void start() {
+		// TODO Auto-generated method stub
+		
+	}
 }
