@@ -1,4 +1,4 @@
-package Game;
+package game;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,36 +6,40 @@ import java.util.List;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 
-import Elements.Wall;
-import Elements.Bombs.IBomb;
-import Elements.Cats.Cat;
-import Elements.Guns.Gun;
+import elements.Net;
+import elements.Wall;
+import elements.bombs.IBomb;
+import elements.cats.Cat;
+import elements.guns.Gun;
 
 public class BoardGame {
 	private final List<Wall> walls;
 	private final List<Cat> cats;
 	private final List<IBomb> bombs;
+	private final List<Net> nets;
 	private final Gun gun;
     private IBomb pickingBomb;
     private final World world;
    
 	
-	public BoardGame(Wall wall, List<Cat> cats, Gun gun) {
+	public BoardGame(float width, float height, Wall wall, List<Cat> cats, Gun gun, Net net) {
 		this.walls = new ArrayList<Wall>();
 		walls.add(wall);
 		this.cats = cats;
 		this.bombs = new ArrayList<IBomb>();
 		this.gun = gun;
+		this.nets = new ArrayList<Net>();
+		nets.add(net);
 		world = new World(new Vec2(0, 0));
-		generateBoundaries();
+		generateBoundaries(width, height);
 	}
 
    
-    public BoardGame(List<Wall> walls, List<Cat> cats, List<IBomb> bombs,
-			Gun gun, World world) {
+    public BoardGame(List<Wall> walls, List<Cat> cats, List<IBomb> bombs, List<Net> nets, Gun gun, World world) {
     	this.walls = walls;
     	this.cats = cats;
     	this.bombs = bombs;
+    	this.nets = nets;
     	this.gun = gun;
     	this.world = world;
 	}
@@ -65,14 +69,14 @@ public class BoardGame {
         pickingBomb.setY(y);
     }
     
-    private void generateBoundaries() {
+    private void generateBoundaries(float width, float height) {
     	for(int i = 0; i < 20; i++) {
-    		walls.add(Wall.createAWall(0, i*20.0f, world));
-    		walls.add(Wall.createAWall(580.0f, i*20.0f, world));
+    		walls.add(Wall.createAWall(width, height+i*20.0f, world));
+    		walls.add(Wall.createAWall(width+580.0f, height+i*20.0f, world));
     	}
     	for(int i = 0; i < 30; i++) {
-    		walls.add(Wall.createAWall(i*20.0f, 0, world));
-    		walls.add(Wall.createAWall(i*20.0f, 380, world));
+    		walls.add(Wall.createAWall(width+i*20.0f, height, world));
+    		walls.add(Wall.createAWall(width+i*20.0f,height+ 380, world));
     	}
     	
     }
@@ -96,5 +100,9 @@ public class BoardGame {
 	
 	public Gun getGun() {
 		return gun;
+	}
+	
+	public List<Net> getNets() {
+		return nets;
 	}
 }

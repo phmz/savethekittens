@@ -1,4 +1,4 @@
-package Elements.Guns;
+package elements.guns;
 
 import java.awt.Color;
 

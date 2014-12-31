@@ -1,12 +1,12 @@
-package Elements.Guns;
+package elements.guns;
 
 import java.awt.Color;
 
-public class DoubleGun implements Gun {
+public class BurstGun implements Gun {
 	private final float x;
 	private final float y;
 
-	public DoubleGun(float x, float y) {
+	public BurstGun(float x, float y) {
 		this.x = x;
 		this.y = y+200;
 	}
@@ -23,7 +23,7 @@ public class DoubleGun implements Gun {
 
 	@Override
 	public Color getColor() {
-		return Color.GREEN;
+		return Color.ORANGE;
 	}
 
 }

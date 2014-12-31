@@ -1,8 +1,8 @@
-package Elements.Cats;
+package elements.cats;
 
 import java.awt.Color;
 
-import Elements.Wall;
+import elements.Wall;
 
 public interface Cat {
 	/**

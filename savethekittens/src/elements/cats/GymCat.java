@@ -1,9 +1,11 @@
-package Elements.Cats;
+package elements.cats;
 
 import java.awt.Color;
+
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
-import Elements.Wall;
+
+import elements.Wall;
 
 public class GymCat implements Cat {
 	private final Body body;

@@ -1,4 +1,4 @@
-package Elements.Bombs;
+package elements.bombs;
 
 public interface IBomb {
 	/**

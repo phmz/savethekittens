@@ -1,5 +1,12 @@
 package parser;
 
+import elements.Net;
+import elements.Wall;
+import elements.bombs.IBomb;
+import elements.cats.Cat;
+import elements.guns.Gun;
+import game.BoardGame;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -10,13 +17,6 @@ import java.util.List;
 
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
-
-import Elements.Net;
-import Elements.Wall;
-import Elements.Bombs.IBomb;
-import Elements.Cats.Cat;
-import Elements.Guns.Gun;
-import Game.BoardGame;
 
 public class Parser {
 
@@ -67,7 +67,7 @@ public class Parser {
 			throw new IOException("err: no gun has been created.");
 		}
 
-		return new BoardGame(walls, cats, bombs, gun, world);
+		return new BoardGame(walls, cats, bombs, nets, gun, world);
 	}
 
 	private static IBomb parseVortex(String count) {

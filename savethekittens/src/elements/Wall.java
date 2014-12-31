@@ -1,4 +1,4 @@
-package Elements;
+package elements;
 
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;

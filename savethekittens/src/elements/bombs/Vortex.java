@@ -1,6 +1,6 @@
-package Elements.Bombs;
+package elements.bombs;
 
-public class Bomb implements IBomb {
+public class Vortex implements IBomb {
 
 	@Override
 	public int getPosX() {
@@ -23,11 +23,13 @@ public class Bomb implements IBomb {
 	@Override
 	public void setX(int x) {
 		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void setY(int y) {
-		// TODO Auto-generated method stub	
+		// TODO Auto-generated method stub
+		
 	}
 
 }

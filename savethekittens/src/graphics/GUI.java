@@ -1,16 +1,15 @@
-package Interface;
+package graphics;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 
-
-import Elements.Wall;
-import Elements.Cats.Cat;
-import Game.BoardGame;
+import elements.Net;
+import elements.Wall;
+import elements.cats.Cat;
 import fr.umlv.zen4.ApplicationContext;
+import game.BoardGame;
 
 public class GUI {
 
@@ -29,6 +28,7 @@ public class GUI {
 				renderWalls(boardgame, graphics);
 				renderCats(boardgame, graphics);
 				renderGun(boardgame, graphics);
+				renderNets(boardgame, graphics);
 			}
 		});
 	}
@@ -96,4 +96,14 @@ public class GUI {
 		graphics.drawString("START", width+282, height+505);
 	}
 
+	public void renderNets(BoardGame boardGame, Graphics2D graphics) {
+		for(Net net:boardGame.getNets()) {
+			renderNet(graphics, net);
+		}
+	}
+
+	private void renderNet(Graphics2D graphics, Net net) {
+		graphics.setColor(Color.ORANGE);
+		graphics.fill(new Rectangle2D.Float(net.getX(), net.getY(), net.getWidth(), net.getHeight()));
+	}
 }

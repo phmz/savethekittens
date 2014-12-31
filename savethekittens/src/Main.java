@@ -6,19 +6,20 @@ import java.util.List;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 
-import Elements.Wall;
-import Elements.Cats.Cat;
-import Elements.Cats.ClassyCat;
-import Elements.Cats.ClawedCat;
-import Elements.Cats.GymCat;
-import Elements.Guns.Gun;
-import Elements.Guns.SimpleGun;
-import Game.BoardGame;
-import Interface.GUI;
+import elements.Net;
+import elements.Wall;
+import elements.cats.Cat;
+import elements.cats.ClassyCat;
+import elements.cats.ClawedCat;
+import elements.cats.GymCat;
+import elements.guns.Gun;
+import elements.guns.SimpleGun;
 import fr.umlv.zen4.Application;
 import fr.umlv.zen4.MotionEvent;
 import fr.umlv.zen4.MotionEvent.Action;
 import fr.umlv.zen4.ScreenInfo;
+import game.BoardGame;
+import graphics.GUI;
 
 public class Main {
 
@@ -62,8 +63,11 @@ public class Main {
 			cats.add(cat);
 			cats.add(cat2);
 			cats.add(cat3);
+			
 			Gun gun = new SimpleGun(ORIGIN_X, ORIGIN_Y);
-			BoardGame game = new BoardGame(wall, cats, gun);
+			
+			Net net = new Net(ORIGIN_X+400, ORIGIN_Y+300);
+			BoardGame game = new BoardGame(ORIGIN_X, ORIGIN_Y, wall, cats, gun, net);
 
 			GUI gui = new GUI();
 			//gui.loadingScreen(context, WIDTH, HEIGHT);
