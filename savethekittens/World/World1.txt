@@ -2,5 +2,5 @@ Gun Simple 100.0 100.0
 Cat GymCat 100.0 100.0
 Net 50.0 50.0
 Wall 35.0 35.0
-Bombe 0
+Bomb 0
 Vortex 0

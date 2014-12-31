@@ -51,9 +51,13 @@ public class GUI {
 	}
 
 	private void renderWall(Graphics2D graphics, Wall wall) {
-		graphics.setColor(Color.RED);
+		graphics.setColor(Color.BLACK);
 		graphics.fill(new Rectangle2D.Float(wall.getPosX(), wall
 				.getPosY(), wall.getWidth(), wall.getHeight()));
+		graphics.setColor(Color.GRAY);
+		graphics.fill(new Rectangle2D.Float(wall.getPosX()+1, wall
+				.getPosY()+1, wall.getWidth()-1, wall.getHeight()-1));
+
 	}
 	
 	private void renderCats(BoardGame boardgame, Graphics2D graphics) {

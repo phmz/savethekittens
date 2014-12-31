@@ -8,6 +8,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.World;
+
 import Elements.Net;
 import Elements.Wall;
 import Elements.Bombs.IBomb;
@@ -23,6 +26,7 @@ public class Parser {
 		List<IBomb> bombs = new ArrayList<IBomb>();
 		List<Net> nets = new ArrayList<Net>();
 		Gun gun = null;
+		World world = new World(new Vec2(0, 0));
 		try (BufferedReader br = Files.newBufferedReader(Paths.get(fileName),
 				StandardCharsets.UTF_8)) {
 			String line = br.readLine();
@@ -63,7 +67,7 @@ public class Parser {
 			throw new IOException("err: no gun has been created.");
 		}
 
-		return new BoardGame(walls, cats, bombs, gun);
+		return new BoardGame(walls, cats, bombs, gun, world);
 	}
 
 	private static IBomb parseVortex(String count) {

@@ -10,8 +10,8 @@ import org.jbox2d.dynamics.World;
 
 public class Wall {
     private final Body body;
-    private static final float width = 10.0f;
-    private static final float height = 10.0f;
+    private static final float width = 20.0f;
+    private static final float height = 20.0f;
     
     public Wall(Body body) {
         this.body = body;

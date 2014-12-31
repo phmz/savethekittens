@@ -1,8 +1,5 @@
 package Game;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,37 +17,31 @@ public class BoardGame {
 	private final List<IBomb> bombs;
 	private final Gun gun;
     private IBomb pickingBomb;
+    private final World world;
    
-	public BoardGame(List<Wall> walls, List<Cat> cats, List<IBomb> bombs, Gun gun) {
-		this.walls = walls;
-		this.cats = cats;
-		this.bombs = bombs;
-		this.gun = gun;
-	}
 	
 	public BoardGame(Wall wall, List<Cat> cats, Gun gun) {
-		walls = new ArrayList<Wall>();
+		this.walls = new ArrayList<Wall>();
 		walls.add(wall);
 		this.cats = cats;
-		this.bombs = null;
+		this.bombs = new ArrayList<IBomb>();
 		this.gun = gun;
+		world = new World(new Vec2(0, 0));
+		generateBoundaries();
 	}
 
-	public static BoardGame createABoardGame(Path path) throws IOException {
-		List<Wall> walls = null;
-		List<Cat> cats = null;
-		List<IBomb> bombs = null;
-		Gun gun = null;
-		Files.lines(path).forEach(l -> parseLine(l));
-		return new BoardGame(walls, cats, bombs, gun);
+   
+    public BoardGame(List<Wall> walls, List<Cat> cats, List<IBomb> bombs,
+			Gun gun, World world) {
+    	this.walls = walls;
+    	this.cats = cats;
+    	this.bombs = bombs;
+    	this.gun = gun;
+    	this.world = world;
 	}
 
-	private static Object parseLine(String l) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-    
-    /**
+
+	/**
      * picks the bomb at the position (x, y)
      *
      */
@@ -72,6 +63,18 @@ public class BoardGame {
     public void placeABomb(int x, int y) {
         pickingBomb.setX(x);
         pickingBomb.setY(y);
+    }
+    
+    private void generateBoundaries() {
+    	for(int i = 0; i < 20; i++) {
+    		walls.add(Wall.createAWall(0, i*20.0f, world));
+    		walls.add(Wall.createAWall(580.0f, i*20.0f, world));
+    	}
+    	for(int i = 0; i < 30; i++) {
+    		walls.add(Wall.createAWall(i*20.0f, 0, world));
+    		walls.add(Wall.createAWall(i*20.0f, 380, world));
+    	}
+    	
     }
 
 	public void start() {
