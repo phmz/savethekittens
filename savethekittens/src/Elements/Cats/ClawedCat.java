@@ -15,8 +15,8 @@ public class ClawedCat extends AbstractCat implements Cat {
 		this.body = body;
 	}
     
-	public static ClawedCat createAClawedCat(World world, float pos) {
-		return new ClawedCat(AbstractCat.createABody(world, pos));
+	public static ClawedCat createAClawedCat(World world, float pos, float width, float height) {
+		return new ClawedCat(AbstractCat.createABody(world, pos, width, height));
 	}
 	
     @Override

@@ -15,8 +15,8 @@ public class ClassyCat implements Cat {
 		this.body = body;
 	}
 	
-	public static ClassyCat createAClassyCat(World world, float pos) {
-		return new ClassyCat(AbstractCat.createABody(world, pos));
+	public static ClassyCat createAClassyCat(World world, float pos, float width, float height) {
+		return new ClassyCat(AbstractCat.createABody(world, pos, width, height));
 	}
     
 	@Override

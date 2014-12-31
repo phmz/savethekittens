@@ -24,13 +24,19 @@ public class Main {
 
 	public static float WIDTH;
 	public static float HEIGHT;
-	
+
 	public static void main(String[] args) {
 		System.out.println("hello world!");
 		Application.run(Color.BLACK, context -> {
 
-            boolean pickingBomb = false;
-            Path path = null;
+			// get the size of the screen
+			ScreenInfo screenInfo = context.getScreenInfo();
+			WIDTH = screenInfo.getWidth();
+			HEIGHT = screenInfo.getHeight();
+			System.out.println("size of the screen (" + WIDTH + " x " + HEIGHT + ")");
+			
+			boolean pickingBomb = false;
+			Path path = null;
 			/*BoardGame game = null;
 			try {
 				game = BoardGame.createABoardGame(path);
@@ -38,32 +44,26 @@ public class Main {
 				System.err.println("unknown file");
 				//return;
 			}*/
-            World world = new World(new Vec2(0, 0));
-            Wall wall = Wall.createAWall(5f, 5f, world);
-        	List<Cat> cats = new ArrayList<Cat>();
-    		
-        	float posCat = 0;
-            Cat cat = ClassyCat.createAClassyCat(world, posCat);
-            posCat+=100f;
-            Cat cat2 = ClawedCat.createAClawedCat(world, posCat);
-            posCat+=100f;
-            Cat cat3 = GymCat.createAGymCat(world, posCat);
-            cats.add(cat);
-            cats.add(cat2);
-            cats.add(cat3);
-            Gun gun = new SimpleGun();
-            BoardGame game = new BoardGame(wall, cats, gun);
-            
-			// get the size of the screen
-			ScreenInfo screenInfo = context.getScreenInfo();
-			WIDTH = screenInfo.getWidth();
-			HEIGHT = screenInfo.getHeight();
-			System.out.println("size of the screen (" + WIDTH + " x " + HEIGHT + ")");
+			World world = new World(new Vec2(0, 0));
+			Wall wall = Wall.createAWall(5f, 5f, world);
+			List<Cat> cats = new ArrayList<Cat>();
+
+			float posCat = 0;
+			Cat cat = ClassyCat.createAClassyCat(world, posCat, WIDTH/2-300, HEIGHT/2-300);
+			posCat+=100f;
+			Cat cat2 = ClawedCat.createAClawedCat(world, posCat, WIDTH/2-300, HEIGHT/2-300);
+			posCat+=100f;
+			Cat cat3 = GymCat.createAGymCat(world, posCat, WIDTH/2-300, HEIGHT/2-300);
+			cats.add(cat);
+			cats.add(cat2);
+			cats.add(cat3);
+			Gun gun = new SimpleGun();
+			BoardGame game = new BoardGame(wall, cats, gun);
 
 			GUI gui = new GUI();
 			//gui.loadingScreen(context, WIDTH, HEIGHT);
 			gui.renderLevel(context, WIDTH, HEIGHT, game);
-            
+
 			for(;;) {
 				MotionEvent event;
 				try {   // wait for a motion event
@@ -72,12 +72,12 @@ public class Main {
 					throw new AssertionError(e);
 				}
 				System.out.println(event);
-                
+
 				// exit if the pointer is in the top left corner of the screen 
 				if (!pickingBomb && event.getAction() == Action.UP && event.getX() < 20 && event.getY() < 20) {
 					context.exit(0);
 				}
-				
+
 			}
 		});
 	}

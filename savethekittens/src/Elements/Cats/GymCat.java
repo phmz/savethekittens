@@ -14,8 +14,8 @@ public class GymCat implements Cat {
         this.body = body;
 	}
     
-	public static GymCat createAGymCat(World world, float pos) {
-		return new GymCat(AbstractCat.createABody(world, pos));
+	public static GymCat createAGymCat(World world, float pos, float width, float height) {
+		return new GymCat(AbstractCat.createABody(world, pos, width, height));
 	}
 	
 	@Override

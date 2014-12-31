@@ -3,7 +3,9 @@ package Interface;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
+
 
 import Elements.Wall;
 import Elements.Cats.Cat;
@@ -12,15 +14,16 @@ import fr.umlv.zen4.ApplicationContext;
 
 public class GUI {
 
-	public void renderLevel(ApplicationContext context, float width,
-			float height, BoardGame boardgame) {
+	public void renderLevel(ApplicationContext context, float width, float height, BoardGame boardgame) {
 		context.renderFrame((graphics, contentLost) -> {
 			if (contentLost) { // we need to render the whole screen
 				graphics.setColor(Color.BLACK);
 				graphics.fill(new Rectangle2D.Float(0, 0, width, height));
 			}
 			graphics.setColor(new Color(240, 240, 240));
-			graphics.fill(new Rectangle2D.Float(0, 0, width, height * 0.8f));
+			graphics.fill(new Rectangle2D.Float(width/2-300, height/2-300, 600, 600));
+			graphics.setColor(Color.BLACK);
+			graphics.fill(new Line2D.Float(width/2-300, height/2+100, width/2+300, height/2+100));
 			if (boardgame != null) {
 				renderWalls(boardgame, graphics);
 				renderCats(boardgame, graphics);
@@ -49,7 +52,7 @@ public class GUI {
 
 	private void renderCat(Graphics2D graphics, Cat cat) {
 		graphics.setColor(cat.getColor());		
-		graphics.fill(new Ellipse2D.Float(cat.getPosX(), cat.getPosY(), 100f, 100f));
+		graphics.fill(new Ellipse2D.Float(cat.getPosX(), cat.getPosY(), 20f, 20f));
 	}
 
 	public void loadingScreen(ApplicationContext context, float width, float height) {

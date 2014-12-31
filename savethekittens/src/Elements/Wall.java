@@ -10,8 +10,8 @@ import org.jbox2d.dynamics.World;
 
 public class Wall {
     private final Body body;
-    private final float width = 50.0f;
-    private final float height = 50.0f;
+    private static final float width = 10.0f;
+    private static final float height = 10.0f;
     
     public Wall(Body body) {
         this.body = body;
@@ -27,7 +27,7 @@ public class Wall {
     
     public static Wall createAWall(float x, float y, World world) {
         PolygonShape poly = new PolygonShape();
-        poly.setAsBox(50.0f, 50.0f);
+        poly.setAsBox(width, height);
         BodyDef bd = new BodyDef();
         bd.type = BodyType.STATIC;
         bd.position = new Vec2(x, y);
@@ -39,11 +39,11 @@ public class Wall {
         return new Wall(myBody);
     }
 
-	public int getPosX() {
-		return (int) body.getPosition().x;
+	public float getPosX() {
+		return body.getPosition().x;
 	}
 
-	public int getPosY() {
-		return (int) body.getPosition().y;
+	public float getPosY() {
+		return body.getPosition().y;
 	}
 }
