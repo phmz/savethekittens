@@ -3,15 +3,22 @@ package Elements.Guns;
 import java.awt.Color;
 
 public class BurstGun implements Gun {
+	private final float x;
+	private final float y;
 
+	public BurstGun(float x, float y) {
+		this.x = x;
+		this.y = y+200;
+	}
+	
 	@Override
 	public float getX() {
-		return 0;
+		return x;
 	}
 
 	@Override
 	public float getY() {
-		return 400;
+		return y;
 	}
 
 	@Override

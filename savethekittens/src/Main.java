@@ -23,7 +23,9 @@ import fr.umlv.zen4.ScreenInfo;
 public class Main {
 
 	public static float WIDTH;
+	public static float ORIGIN_X;
 	public static float HEIGHT;
+	public static float ORIGIN_Y;
 
 	public static void main(String[] args) {
 		System.out.println("hello world!");
@@ -32,8 +34,11 @@ public class Main {
 			// get the size of the screen
 			ScreenInfo screenInfo = context.getScreenInfo();
 			WIDTH = screenInfo.getWidth();
+			ORIGIN_X = WIDTH/2-300;
 			HEIGHT = screenInfo.getHeight();
+			ORIGIN_Y = HEIGHT/2-300;
 			System.out.println("size of the screen (" + WIDTH + " x " + HEIGHT + ")");
+			System.out.println("origin of the screen (" + ORIGIN_X + " x " + ORIGIN_Y + ")");
 			
 			boolean pickingBomb = false;
 			Path path = null;
@@ -45,24 +50,25 @@ public class Main {
 				//return;
 			}*/
 			World world = new World(new Vec2(0, 0));
-			Wall wall = Wall.createAWall(5f, 5f, world);
+			Wall wall = Wall.createAWall(ORIGIN_X+100f, ORIGIN_Y+100f, world);
 			List<Cat> cats = new ArrayList<Cat>();
 
 			float posCat = 0;
-			Cat cat = ClassyCat.createAClassyCat(world, posCat, WIDTH/2-300, HEIGHT/2-300);
-			posCat+=100f;
-			Cat cat2 = ClawedCat.createAClawedCat(world, posCat, WIDTH/2-300, HEIGHT/2-300);
-			posCat+=100f;
-			Cat cat3 = GymCat.createAGymCat(world, posCat, WIDTH/2-300, HEIGHT/2-300);
+			Cat cat = ClassyCat.createAClassyCat(world, posCat, ORIGIN_X, ORIGIN_Y);
+			posCat+=50f;
+			Cat cat2 = ClawedCat.createAClawedCat(world, posCat, ORIGIN_X, ORIGIN_Y);
+			posCat+=50f;
+			Cat cat3 = GymCat.createAGymCat(world, posCat, ORIGIN_X, ORIGIN_Y);
 			cats.add(cat);
 			cats.add(cat2);
 			cats.add(cat3);
-			Gun gun = new SimpleGun();
+			Gun gun = new SimpleGun(ORIGIN_X, ORIGIN_Y);
 			BoardGame game = new BoardGame(wall, cats, gun);
 
 			GUI gui = new GUI();
 			//gui.loadingScreen(context, WIDTH, HEIGHT);
-			gui.renderLevel(context, WIDTH, HEIGHT, game);
+			gui.fillScreen(context, WIDTH, HEIGHT);
+			gui.renderLevel(context, ORIGIN_X, ORIGIN_Y, game);
 
 			for(;;) {
 				MotionEvent event;
