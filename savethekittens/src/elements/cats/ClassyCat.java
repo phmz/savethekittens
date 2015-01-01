@@ -43,9 +43,9 @@ public class ClassyCat implements Cat {
 
 	@Override
 	public void addJointure(Wall... walls) {
-		for(Wall wall:walls) {
+		//for(Wall wall:walls) {
 			// TO DO
-		}
+		//}
 	}
 	
 	@Override

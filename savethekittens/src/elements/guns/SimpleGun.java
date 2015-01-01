@@ -8,7 +8,7 @@ public class SimpleGun implements Gun {
 
 	public SimpleGun(float x, float y) {
 		this.x = x;
-		this.y = y+200;
+		this.y = y;
 	}
 
 	@Override

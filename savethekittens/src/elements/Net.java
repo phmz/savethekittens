@@ -11,11 +11,11 @@ public class Net {
 		this.posY = posY;
 	}
 	
-	public float getX() {
+	public float getPosX() {
 		return posX;
 	}
 	
-	public float getY() {
+	public float getPosY() {
 		return posY;
 	}
 	

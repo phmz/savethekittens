@@ -1,7 +1,7 @@
 package elements.bombs;
 
 public class Vortex implements IBomb {
-
+	
 	@Override
 	public int getPosX() {
 		// TODO Auto-generated method stub

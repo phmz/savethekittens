@@ -4,7 +4,13 @@ import elements.Net;
 import elements.Wall;
 import elements.bombs.IBomb;
 import elements.cats.Cat;
+import elements.cats.ClassyCat;
+import elements.cats.ClawedCat;
+import elements.cats.GymCat;
+import elements.guns.BurstGun;
+import elements.guns.DoubleGun;
 import elements.guns.Gun;
+import elements.guns.SimpleGun;
 import game.BoardGame;
 
 import java.io.BufferedReader;
@@ -20,7 +26,7 @@ import org.jbox2d.dynamics.World;
 
 public class Parser {
 
-	public static BoardGame parser(String fileName) throws IOException {
+	public static BoardGame parseWorld(String fileName) throws IOException {
 		List<Wall> walls = new ArrayList<Wall>();
 		List<Cat> cats = new ArrayList<Cat>();
 		List<IBomb> bombs = new ArrayList<IBomb>();
@@ -29,89 +35,87 @@ public class Parser {
 		World world = new World(new Vec2(0, 0));
 		try (BufferedReader br = Files.newBufferedReader(Paths.get(fileName),
 				StandardCharsets.UTF_8)) {
-			String line = br.readLine();
-			String[] tokens = line.split(" ");
-			switch (tokens[0]) {
-			case "Gun":
-				gun = parseGun(tokens[1], tokens[2], tokens[3]);
-				break;
-			case "Cat":
-				cats.add(parseCat(tokens[1], tokens[2], tokens[3]));
-				break;
-			case "Wall":
-				walls.add(parseWall(tokens[1], tokens[2]));
-				break;
-			case "Net":
-				nets.add(parseNet(tokens[1], tokens[2]));
-				break;
-			case "Bomb":
-				bombs.add(parseBomb(tokens[1]));
-				break;
-			case "Vortex":
-				bombs.add(parseVortex(tokens[1]));
-				break;
-			default:
-				throw new IOException("err: " + tokens[0] + " not recognized.");
+			String line;
+			while (null != (line = br.readLine())) {
+				// String line = br.readLine();
+				String[] tokens = line.split(" ");
+				switch (tokens[0]) {
+				case "Gun":
+					gun = parseGun(tokens[1], tokens[2], tokens[3]);
+					break;
+				case "Cat":
+					cats.add(parseCat(world, tokens[1], cats.size()));
+					break;
+				case "Wall":
+					walls.add(parseWall(world, tokens[1], tokens[2]));
+					break;
+				case "Net":
+					nets.add(parseNet(tokens[1], tokens[2]));
+					break;
+				case "Bomb":
+					// bombs.add(parseBomb(tokens[1]));
+					break;
+				case "Vortex":
+					// bombs.add(parseVortex(tokens[1]));
+					break;
+				default:
+					throw new IOException("err: " + tokens[0]
+							+ " not recognized.");
+				}
 			}
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		if(cats.size() != nets.size()) {
-			throw new IOException("err: number of cats ("+cats.size()+") different from number of nets ("+nets.size()+").");
+
+		if (cats.size() != nets.size()) {
+			throw new IOException("err: number of cats (" + cats.size()
+					+ ") different from number of nets (" + nets.size() + ").");
 		}
-		
-		if(null == gun) {
+
+		if (null == gun) {
 			throw new IOException("err: no gun has been created.");
 		}
 
-		return new BoardGame(walls, cats, bombs, nets, gun, world);
-	}
-
-	private static IBomb parseVortex(String count) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private static IBomb parseBomb(String count) {
-		// TODO Auto-generated method stub
-		return null;
+		return new BoardGame(world, walls, cats, bombs, nets, gun);
 	}
 
 	private static Net parseNet(String posX, String posY) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Net(Float.parseFloat(posX), Float.parseFloat(posY));
 	}
 
-	private static Wall parseWall(String posX, String posY) {
-		// TODO Auto-generated method stub
-		return null;
+	private static Wall parseWall(World world, String posX, String posY) {
+		return Wall.createAWall(world, Float.parseFloat(posX),
+				Float.parseFloat(posY));
 	}
 
-	private static Cat parseCat(String type, String posX, String posY) {
-		switch(type) {
+	private static Cat parseCat(World world, String type, int pos)
+			throws IOException {
+		switch (type) {
 		case "ClassyCat":
-			break;
+			return ClassyCat.createAClassyCat(world, pos, 20f, 20f);
 		case "GymCat":
-			break;
+			return GymCat.createAGymCat(world, pos, 20f, 20f);
 		case "ClawedCat":
-			break;		
+			return ClawedCat.createAClawedCat(world, pos, 20f, 20f);
+		default:
+			throw new IOException();
 		}
-		return null;
 	}
 
-	private static Gun parseGun(String type, String posX, String posY) {
-		switch(type) {
+	private static Gun parseGun(String type, String posX, String posY)
+			throws IOException {
+		switch (type) {
 		case "Simple":
-			break;
+			return new SimpleGun(Float.parseFloat(posX), Float.parseFloat(posY));
 		case "Double":
-			break;
+			return new DoubleGun(Float.parseFloat(posX), Float.parseFloat(posY));
 		case "Burst":
-			break;		
+			return new BurstGun(Float.parseFloat(posX), Float.parseFloat(posY));
+		default:
+			throw new IOException();
 		}
-		return null;
 	}
 
 }

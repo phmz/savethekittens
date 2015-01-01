@@ -1,19 +1,6 @@
 import java.awt.Color;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
 
-import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.World;
-
-import elements.Net;
-import elements.Wall;
-import elements.cats.Cat;
-import elements.cats.ClassyCat;
-import elements.cats.ClawedCat;
-import elements.cats.GymCat;
-import elements.guns.Gun;
-import elements.guns.SimpleGun;
+import parser.Parser;
 import fr.umlv.zen4.Application;
 import fr.umlv.zen4.MotionEvent;
 import fr.umlv.zen4.MotionEvent.Action;
@@ -42,37 +29,15 @@ public class Main {
 			System.out.println("origin of the screen (" + ORIGIN_X + " x " + ORIGIN_Y + ")");
 			
 			boolean pickingBomb = false;
-			Path path = null;
-			/*BoardGame game = null;
+			BoardGame game = null;
 			try {
-				game = BoardGame.createABoardGame(path);
+				game = Parser.parseWorld("World/World1.txt");
 			} catch (Exception e1) {
-				System.err.println("unknown file");
-				//return;
-			}*/
-			World world = new World(new Vec2(0, 0));
-			Wall wall = Wall.createAWall(ORIGIN_X+100f, ORIGIN_Y+100f, world);
-			List<Cat> cats = new ArrayList<Cat>();
-
-			float posCat = 0;
-			Cat cat = ClassyCat.createAClassyCat(world, posCat, ORIGIN_X, ORIGIN_Y);
-			posCat+=50f;
-			Cat cat2 = ClawedCat.createAClawedCat(world, posCat, ORIGIN_X, ORIGIN_Y);
-			posCat+=50f;
-			Cat cat3 = GymCat.createAGymCat(world, posCat, ORIGIN_X, ORIGIN_Y);
-			cats.add(cat);
-			cats.add(cat2);
-			cats.add(cat3);
-			
-			Gun gun = new SimpleGun(ORIGIN_X, ORIGIN_Y);
-			
-			Net net = new Net(ORIGIN_X+400, ORIGIN_Y+300);
-			BoardGame game = new BoardGame(ORIGIN_X, ORIGIN_Y, wall, cats, gun, net);
-
-			GUI gui = new GUI();
-			//gui.loadingScreen(context, WIDTH, HEIGHT);
-			gui.fillScreen(context, WIDTH, HEIGHT);
-			gui.renderLevel(context, ORIGIN_X, ORIGIN_Y, game);
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			GUI gui = new GUI(ORIGIN_X, ORIGIN_Y);
+			gui.renderLevel(context, game);
 
 			for(;;) {
 				MotionEvent event;

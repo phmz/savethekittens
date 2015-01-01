@@ -25,7 +25,7 @@ public class Wall {
 		return height;
 	}
     
-    public static Wall createAWall(float x, float y, World world) {
+    public static Wall createAWall(World world, float x, float y) {
         PolygonShape poly = new PolygonShape();
         poly.setAsBox(width, height);
         BodyDef bd = new BodyDef();

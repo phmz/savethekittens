@@ -1,9 +1,7 @@
 package game;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 
 import elements.Net;
@@ -21,27 +19,14 @@ public class BoardGame {
     private IBomb pickingBomb;
     private final World world;
    
-	
-	public BoardGame(float width, float height, Wall wall, List<Cat> cats, Gun gun, Net net) {
-		this.walls = new ArrayList<Wall>();
-		walls.add(wall);
-		this.cats = cats;
-		this.bombs = new ArrayList<IBomb>();
-		this.gun = gun;
-		this.nets = new ArrayList<Net>();
-		nets.add(net);
-		world = new World(new Vec2(0, 0));
-		generateBoundaries(width, height);
-	}
-
-   
-    public BoardGame(List<Wall> walls, List<Cat> cats, List<IBomb> bombs, List<Net> nets, Gun gun, World world) {
+    public BoardGame(World world, List<Wall> walls, List<Cat> cats, List<IBomb> bombs, List<Net> nets, Gun gun) {
     	this.walls = walls;
     	this.cats = cats;
     	this.bombs = bombs;
     	this.nets = nets;
     	this.gun = gun;
     	this.world = world;
+    	generateBoundaries(0, 0);
 	}
 
 
@@ -71,12 +56,12 @@ public class BoardGame {
     
     private void generateBoundaries(float width, float height) {
     	for(int i = 0; i < 20; i++) {
-    		walls.add(Wall.createAWall(width, height+i*20.0f, world));
-    		walls.add(Wall.createAWall(width+580.0f, height+i*20.0f, world));
+    		walls.add(Wall.createAWall(world, width, height+i*20.0f));
+    		walls.add(Wall.createAWall(world, width+580.0f, height+i*20.0f));
     	}
     	for(int i = 0; i < 30; i++) {
-    		walls.add(Wall.createAWall(width+i*20.0f, height, world));
-    		walls.add(Wall.createAWall(width+i*20.0f,height+ 380, world));
+    		walls.add(Wall.createAWall(world, width+i*20.0f, height));
+    		walls.add(Wall.createAWall(world, width+i*20.0f,height+ 380));
     	}
     	
     }
