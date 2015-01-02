@@ -8,14 +8,18 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
+import elements.cats.Cat;
+
 public class Net {
     private final Body body;
     private static final float width = 20.0f;
     private static final float height = 20.0f;
 	public static final String USER_DATA = "Net";
+	public static final int ID_NET = 24;
     
     private Net(Body body) {
         this.body = body;
+        body.setUserData(this);
     }
     
     /**
@@ -51,6 +55,8 @@ public class Net {
         FixtureDef fd = new FixtureDef();
         fd.shape = poly;
         fd.friction = 1.0f;
+        fd.filter.categoryBits = ID_NET;
+        fd.filter.maskBits = Cat.ID_CAT;
         myBody.createFixture(fd).setUserData(USER_DATA);
         return new Net(myBody);
     }

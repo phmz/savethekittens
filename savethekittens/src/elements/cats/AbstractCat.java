@@ -11,10 +11,12 @@ import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
 import elements.Net;
+import elements.Wall;
 import elements.bombs.Bomb;
 
 class AbstractCat implements Cat {
 
+	private static final Object USER_DATA = "Cat";
 	private final Body body;
     private boolean saved;
     private boolean dead;
@@ -30,11 +32,13 @@ class AbstractCat implements Cat {
 		CircleShape circ = new CircleShape();
 	    FixtureDef fd = new FixtureDef();
 	    fd.shape = circ;
+	    fd.filter.categoryBits = ID_CAT;
+	    fd.filter.maskBits = Wall.ID_WALL | Net.ID_NET | Bomb.ID_BOMB;
 		BodyDef bod = new BodyDef();
 		bod.type = BodyType.DYNAMIC;
 		bod.position.set(20f, 190f);
 	    Body myBody = world.createBody(bod);
-	    myBody.createFixture(fd);
+	    myBody.createFixture(fd).setUserData(USER_DATA);
 	    return myBody;
 	}
 
@@ -44,7 +48,6 @@ class AbstractCat implements Cat {
 	 */
 	AbstractCat(Body body) {
 		this.body = body;
-		body.setUserData(this);
 		saved = false;
 		dead = false;
 	}

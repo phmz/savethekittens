@@ -8,10 +8,13 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
+import elements.cats.Cat;
+
 public class Wall {
     private final Body body;
     private static final float width = 20.0f;
     private static final float height = 20.0f;
+    public static final int ID_WALL = 16;
 	public static final String USER_DATA = "Wall";
     
     private Wall(Body body) {
@@ -51,6 +54,8 @@ public class Wall {
         FixtureDef fd = new FixtureDef();
         fd.shape = poly;
         fd.friction = 1.0f;
+        fd.filter.categoryBits = ID_WALL;
+        fd.filter.maskBits = Cat.ID_CAT;
         myBody.createFixture(fd).setUserData(USER_DATA);
         return new Wall(myBody);
     }

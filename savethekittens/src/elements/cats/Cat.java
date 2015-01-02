@@ -8,6 +8,8 @@ import elements.Net;
 import elements.bombs.Bomb;
 
 public interface Cat {
+	public static final int ID_CAT = 2;
+	
 	/**
 	 * Returns the horizontal position of the cat.
 	 * @return coordonate x

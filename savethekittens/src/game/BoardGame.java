@@ -90,12 +90,13 @@ public class BoardGame {
 				Fixture fixtureA = contact.getFixtureA();
 				Fixture fixtureB = contact.getFixtureB();
 				System.out.println(fixtureA.getUserData() + " " + fixtureB.getUserData());
-				beginContactType(fixtureA, fixtureB);
-				beginContactType(fixtureB, fixtureA);
+				
+				/*beginContactType(fixtureA, fixtureB);
+				beginContactType(fixtureB, fixtureA);*/
 			}
 
 			private void beginContactType(Fixture fixtureA, Fixture fixtureB) {
-			/*	Body bodyA = fixtureA.getBody();
+				Body bodyA = fixtureA.getBody();
 				Body bodyB = fixtureB.getBody();
 				Object cat = bodyB.getUserData();
 				switch((String)bodyA.getUserData()) {
@@ -112,7 +113,7 @@ public class BoardGame {
 					break;
 				default:
 					break;
-				}*/
+				}
 			}
 
 			@Override
@@ -130,7 +131,7 @@ public class BoardGame {
 		});
 		isStarted = true;
 		for(Cat cat: cats) {
-			cat.move(new Vec2(5f, 5f));
+			cat.move(new Vec2(5f, 0f));
 		}	
 		System.out.println(world.getBodyCount());
 		while(!victory() || !defeat()) {
