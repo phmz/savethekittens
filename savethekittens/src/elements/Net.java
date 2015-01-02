@@ -12,6 +12,7 @@ import elements.cats.Cat;
 
 public class Net {
     private final Body body;
+    private final boolean isEmpty;
     private static final float width = 20.0f;
     private static final float height = 20.0f;
 	public static final String USER_DATA = "Net";
@@ -19,6 +20,7 @@ public class Net {
     
     private Net(Body body) {
         this.body = body;
+        this.isEmpty = true;
         body.setUserData(this);
     }
     
@@ -28,6 +30,14 @@ public class Net {
      */
     public float getWidth() {
 		return width;
+	}
+    
+    /**
+     * Returns the value of isEmpty
+     * @return true is the net is empty
+     */
+    public boolean isEmpty() {
+		return isEmpty;
 	}
     
     /**

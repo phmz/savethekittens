@@ -17,33 +17,39 @@ import elements.bombs.Bomb;
 class AbstractCat implements Cat {
 
 	private final Body body;
-    private boolean saved;
-    private boolean dead;
-    
+	private boolean saved;
+	private boolean dead;
+
 	/**
 	 * creates a JBox2D body
-	 * @param world JBox2D world
-	 * @param width position of the cat on x
-	 * @param height position of the cat on y 
+	 * 
+	 * @param world
+	 *            JBox2D world
+	 * @param width
+	 *            position of the cat on x
+	 * @param height
+	 *            position of the cat on y
 	 * @return JBox2D body
 	 */
 	public static Body createABody(World world, float width, float height) {
 		CircleShape circ = new CircleShape();
-	    FixtureDef fd = new FixtureDef();
-	    fd.shape = circ;
-	    fd.filter.categoryBits = ID_CAT;
-	    fd.filter.maskBits = Wall.ID_WALL | Net.ID_NET | Bomb.ID_BOMB;
+		FixtureDef fd = new FixtureDef();
+		fd.shape = circ;
+		fd.filter.categoryBits = ID_CAT;
+		fd.filter.maskBits = Wall.ID_WALL | Net.ID_NET | Bomb.ID_BOMB;
 		BodyDef bod = new BodyDef();
 		bod.type = BodyType.DYNAMIC;
 		bod.position.set(21f, 190f);
-	    Body myBody = world.createBody(bod);
-	    myBody.createFixture(fd).setUserData(USER_DATA);
-	    return myBody;
+		Body myBody = world.createBody(bod);
+		myBody.createFixture(fd).setUserData(USER_DATA);
+		return myBody;
 	}
 
 	/**
 	 * Creates a new cat
-	 * @param body JBox2D body
+	 * 
+	 * @param body
+	 *            JBox2D body
 	 */
 	AbstractCat(Body body) {
 		this.body = body;
@@ -89,7 +95,11 @@ class AbstractCat implements Cat {
 
 	@Override
 	public void contactWithNet(Net net) {
-		saved = true;
+		if (net.isEmpty()) {
+			saved = true;
+		} else {
+			dead = true;
+		}
 	}
 
 	@Override

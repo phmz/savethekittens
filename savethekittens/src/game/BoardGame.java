@@ -32,7 +32,24 @@ public class BoardGame {
 
 	private boolean isStarted = false;
 
-	public BoardGame(World world, List<Wall> walls, List<Cat> cats, List<IBomb> bombs, List<Net> nets, Gun gun) {
+	/**
+	 * Creates a boardgame
+	 * 
+	 * @param world
+	 *            the world containing every objects
+	 * @param walls
+	 *            the list containing every walls
+	 * @param cats
+	 *            the list containing every cats
+	 * @param bombs
+	 *            the list containing every bombs and vortex
+	 * @param nets
+	 *            the list containing every nets
+	 * @param gun
+	 *            the gun used for the world
+	 */
+	public BoardGame(World world, List<Wall> walls, List<Cat> cats,
+			List<IBomb> bombs, List<Net> nets, Gun gun) {
 		this.walls = walls;
 		this.cats = cats;
 		this.bombs = bombs;
@@ -42,16 +59,16 @@ public class BoardGame {
 		generateBoundaries(0, 0);
 	}
 
-
 	/**
 	 * picks the bomb at the position (x, y)
 	 *
 	 */
 	public void pickABomb(int x, int y) {
-		for(IBomb bomb: bombs) {
+		for (IBomb bomb : bombs) {
 			float posX = bomb.getPosX();
 			float posY = bomb.getPosY();
-			if(x > posX-20 && x < posX+20 && y > posY-20 && y < posY+20) {
+			if (x > posX - 20 && x < posX + 20 && y > posY - 20
+					&& y < posY + 20) {
 				pickingBomb = bomb;
 				break;
 			}
@@ -68,20 +85,22 @@ public class BoardGame {
 	}
 
 	private void generateBoundaries(float width, float height) {
-		for(int i = 0; i < 20; i++) {
-			walls.add(Wall.createAWall(world, width, height+i*20.0f));
-			walls.add(Wall.createAWall(world, width+580.0f, height+i*20.0f));
+		for (int i = 0; i < 20; i++) {
+			walls.add(Wall.createAWall(world, width, height + i * 20.0f));
+			walls.add(Wall.createAWall(world, width + 580.0f, height + i
+					* 20.0f));
 		}
-		for(int i = 0; i < 30; i++) {
-			walls.add(Wall.createAWall(world, width+i*20.0f, height));
-			walls.add(Wall.createAWall(world, width+i*20.0f,height+ 380));
+		for (int i = 0; i < 30; i++) {
+			walls.add(Wall.createAWall(world, width + i * 20.0f, height));
+			walls.add(Wall.createAWall(world, width + i * 20.0f, height + 380));
 		}
 
 	}
 
 	/**
 	 * Starts the game.
-	 * @param context 
+	 * 
+	 * @param context
 	 */
 	public void start(GUI gui, ApplicationContext context) {
 		world.setContactListener(new ContactListener() {
@@ -97,7 +116,7 @@ public class BoardGame {
 				Body bodyA = fixtureA.getBody();
 				Body bodyB = fixtureB.getBody();
 				Object cat = bodyB.getUserData();
-				switch((String)fixtureA.getUserData()) {
+				switch ((String) fixtureA.getUserData()) {
 				case Wall.USER_DATA:
 					((Cat) cat).contactWithWall();
 					break;
@@ -118,35 +137,36 @@ public class BoardGame {
 			public void endContact(Contact arg0) {
 				// nothing to do
 			}
+
 			@Override
 			public void postSolve(Contact arg0, ContactImpulse arg1) {
 				// nothing to do
 			}
+
 			@Override
 			public void preSolve(Contact arg0, Manifold arg1) {
 				// nothing to do
 			}
 		});
 		isStarted = true;
-		for(Cat cat: cats) {
+		for (Cat cat : cats) {
 			cat.move(new Vec2(5f, 0f));
 		}
-		while(!victory() && !defeat()) {
+		while (!victory() && !defeat()) {
 			update(gui, context);
 		}
 		gui.renderEnd(context, victory());
 	}
 
 	private void update(GUI gui, ApplicationContext context) {
-		world.step(1f/60f, 6, 2);
+		world.step(1f / 60f, 6, 2);
 		world.clearForces();
 		gui.renderLevel(context, this);
 	}
 
-
 	private boolean defeat() {
-		for(Cat cat: cats) {
-			if(cat.isDead()) {
+		for (Cat cat : cats) {
+			if (cat.isDead()) {
 				finish = true;
 				return true;
 			}
@@ -155,8 +175,8 @@ public class BoardGame {
 	}
 
 	private boolean victory() {
-		for(Cat cat: cats) {
-			if(!cat.isSafe()) {
+		for (Cat cat : cats) {
+			if (!cat.isSafe()) {
 				return false;
 			}
 		}
@@ -164,13 +184,18 @@ public class BoardGame {
 		return true;
 	}
 
-
+	/**
+	 * Return true if the game is finished
+	 * 
+	 * @return true if the game is finished
+	 */
 	public boolean isFinished() {
 		return finish;
 	}
 
 	/**
 	 * Returns the list of the walls
+	 * 
 	 * @return list of the walls
 	 */
 	public List<Wall> getWalls() {
@@ -179,6 +204,7 @@ public class BoardGame {
 
 	/**
 	 * Returns the list of the cats
+	 * 
 	 * @return list of the cats
 	 */
 	public List<Cat> getCats() {
@@ -187,6 +213,7 @@ public class BoardGame {
 
 	/**
 	 * Returns the list of the bombs
+	 * 
 	 * @return list of the bomb
 	 */
 	public List<IBomb> getBombs() {
@@ -195,6 +222,7 @@ public class BoardGame {
 
 	/**
 	 * Returns the gun
+	 * 
 	 * @return the gun
 	 */
 	public Gun getGun() {
@@ -203,6 +231,7 @@ public class BoardGame {
 
 	/**
 	 * Returns the list of the nets
+	 * 
 	 * @return list of the nets
 	 */
 	public List<Net> getNets() {
@@ -211,6 +240,7 @@ public class BoardGame {
 
 	/**
 	 * Returns the JBox2D world
+	 * 
 	 * @return JBox2D world
 	 */
 	public World getWorld() {
@@ -219,6 +249,7 @@ public class BoardGame {
 
 	/**
 	 * Returns true if the has started
+	 * 
 	 * @return true if the game has started
 	 */
 	public boolean isStarted() {

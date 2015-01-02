@@ -47,9 +47,21 @@ public interface Cat {
 	 */
 	void move(Vec2 v);
 
+	
+	/**
+	 * Kills the cat when there is a collision
+	 */
 	void contactWithWall();
 
+	/**
+	 * Saves the cat when there is a collision and the net is empty otherwise kills the cat
+	 * @param net
+	 */
 	void contactWithNet(Net net);
 
+	/**
+	 * Moves the cat when there is an explosion
+	 * @param bomb
+	 */
 	void contactWithBomb(Bomb bomb);
 }

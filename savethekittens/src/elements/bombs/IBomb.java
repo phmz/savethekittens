@@ -14,7 +14,7 @@ public interface IBomb {
 
 	/**
 	 * Returns vertical position of the bomb
-	 * @return posittion y of the bomb
+	 * @return position y of the bomb
 	 */
 	float getPosY();
 

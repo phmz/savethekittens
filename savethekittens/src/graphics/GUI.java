@@ -172,6 +172,11 @@ public class GUI {
 				.getPosY() + originY, 20f, 20f));
 	}
 
+	/**
+	 * Render the end when the level is finished
+	 * @param context
+	 * @param victory
+	 */
 	public void renderEnd(ApplicationContext context, boolean victory) {
 		context.renderFrame((graphics, contentLost) -> {
 			Color color;
