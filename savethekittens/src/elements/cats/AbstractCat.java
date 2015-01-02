@@ -1,5 +1,7 @@
 package elements.cats;
 
+import java.awt.Color;
+
 import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
@@ -8,10 +10,14 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
-class AbstractCat {
+class AbstractCat implements Cat {
 
+	private final Body body;
+    private boolean saved;
+    private boolean dead;
+    
 	/**
-	 * creates a JBos2D body
+	 * creates a JBox2D body
 	 * @param world JBox2D world
 	 * @param width position of the cat on x
 	 * @param height position of the cat on y 
@@ -43,8 +49,42 @@ class AbstractCat {
 	    return myBody;
 	}
 
-	public AbstractCat() {
-		super();
+	public AbstractCat(Body body) {
+		this.body = body;
+		saved = false;
+		dead = false;
+	}
+
+	@Override
+	public float getPosX() {
+		return body.getPosition().x;
+	}
+
+	@Override
+	public float getPosY() {
+		return body.getPosition().y;
+	}
+
+	@Override
+	public boolean isSafe() {
+		return saved;
+	}
+
+	@Override
+	public Color getColor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isDead() {
+		return dead;
+	}
+
+	@Override
+	public void move(Vec2 v) {
+		body.setActive(true);
+		body.setLinearVelocity(v);
 	}
 
 }

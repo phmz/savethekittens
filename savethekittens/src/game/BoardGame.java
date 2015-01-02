@@ -97,8 +97,7 @@ public class BoardGame {
 			
 			@Override
 			public void beginContact(Contact arg0) {
-				// TODO Auto-generated method stub
-				
+				System.out.println("contact!");
 			}
 		});
 		isStarted = true;
