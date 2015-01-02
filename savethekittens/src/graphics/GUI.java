@@ -36,8 +36,8 @@ public class GUI {
 			renderButton(graphics);
 			if (boardgame != null) {
 				renderWalls(boardgame, graphics);
-				renderCats(boardgame, graphics);
 				renderGun(boardgame, graphics);
+				renderCats(boardgame, graphics);
 				renderNets(boardgame, graphics);
 				renderBombs(boardgame, graphics);
 			}
@@ -73,15 +73,27 @@ public class GUI {
 	}
 
 	private void renderCats(BoardGame boardgame, Graphics2D graphics) {
-		for (Cat cat : boardgame.getCats()) {
-			renderCat(graphics, cat);
+		for(int i = 0; i < boardgame.getCats().size(); i++) {
+			renderCat(graphics, boardgame.getCats().get(i), i);
 		}
 	}
 
-	private void renderCat(Graphics2D graphics, Cat cat) {
+	private void renderCat(Graphics2D graphics, Cat cat, int pos) {
 		graphics.setColor(cat.getColor());
 		graphics.fill(new Ellipse2D.Float(cat.getPosX() + originX, cat
 				.getPosY() + originY, 20f, 20f));
+		
+		if(cat.isSafe()) {
+			graphics.setColor(Color.GREEN);
+			graphics.fill(new Ellipse2D.Float(50 + 20*pos + originX, 490 + originY, 20f, 20f));
+		} else if(cat.isDead()) {
+			graphics.setColor(Color.RED);
+			graphics.fill(new Ellipse2D.Float(50 + 20*pos + originX, 490 + originY, 20f, 20f));
+		} else {
+			graphics.setColor(cat.getColor());
+			graphics.fill(new Ellipse2D.Float(50 + 20*pos + originX, 490 + originY, 20f, 20f));
+		}
+
 	}
 
 	public void loadingScreen(ApplicationContext context) {
@@ -98,7 +110,7 @@ public class GUI {
 	public void renderGun(BoardGame boardGame, Graphics2D graphics) {
 		graphics.setColor(boardGame.getGun().getColor());
 		graphics.fill(new Rectangle2D.Float(boardGame.getGun().getX()+originX,
-				boardGame.getGun().getY()+originY, 40f, 30f));
+				boardGame.getGun().getY()+originY, 40f, 20f));
 	}
 
 	public void renderButton(Graphics2D graphics) {

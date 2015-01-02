@@ -16,8 +16,8 @@ public class ClawedCat extends AbstractCat implements Cat {
 		this.body = body;
 	}
     
-	public static ClawedCat createAClawedCat(World world, float pos, float width, float height) {
-		return new ClawedCat(AbstractCat.createABody(world, pos, width, height));
+	public static ClawedCat createAClawedCat(World world, float width, float height) {
+		return new ClawedCat(AbstractCat.createABody(world, width, height));
 	}
 	
     @Override
@@ -50,5 +50,11 @@ public class ClawedCat extends AbstractCat implements Cat {
 	@Override
 	public Color getColor() {
 		return Color.BLUE;
+	}
+
+	@Override
+	public boolean isDead() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

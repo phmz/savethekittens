@@ -16,8 +16,8 @@ public class ClassyCat implements Cat {
 		this.body = body;
 	}
 	
-	public static ClassyCat createAClassyCat(World world, float pos, float width, float height) {
-		return new ClassyCat(AbstractCat.createABody(world, pos, width, height));
+	public static ClassyCat createAClassyCat(World world, float width, float height) {
+		return new ClassyCat(AbstractCat.createABody(world, width, height));
 	}
     
 	@Override
@@ -51,6 +51,12 @@ public class ClassyCat implements Cat {
 	@Override
 	public Color getColor() {
 		return Color.CYAN;
+	}
+
+	@Override
+	public boolean isDead() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

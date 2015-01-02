@@ -77,13 +77,13 @@ public class Parser {
 
 		switch(cats.size()) {
 		case 1:
-			gun = new SimpleGun(0.0f, 185.0f);
+			gun = new SimpleGun(0.0f, 190.0f);
 			break;
 		case 2: 
-			gun = new DoubleGun(0.0f, 185.0f);
+			gun = new DoubleGun(0.0f, 190.0f);
 			break;
 		case 3:
-			gun = new BurstGun(0.0f, 185.0f);
+			gun = new BurstGun(0.0f, 190.0f);
 			break;
 		}
 		return new BoardGame(world, walls, cats, bombs, nets, gun);
@@ -120,11 +120,11 @@ public class Parser {
 			throws IOException {
 		switch (type) {
 		case "ClassyCat":
-			return ClassyCat.createAClassyCat(world, pos*20, 20f, 20f);
+			return ClassyCat.createAClassyCat(world, 20f, 20f);
 		case "GymCat":
-			return GymCat.createAGymCat(world, pos*20, 20f, 20f);
+			return GymCat.createAGymCat(world, 20f, 20f);
 		case "ClawedCat":
-			return ClawedCat.createAClawedCat(world, pos*20, 20f, 20f);
+			return ClawedCat.createAClawedCat(world, 20f, 20f);
 		default:
 			throw new IOException();
 		}

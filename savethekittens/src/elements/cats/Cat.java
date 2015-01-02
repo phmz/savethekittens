@@ -38,4 +38,6 @@ public interface Cat {
 	void addJointure(Wall...walls);
 
 	Color getColor();
+
+	boolean isDead();
 }

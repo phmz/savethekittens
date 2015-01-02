@@ -10,14 +10,16 @@ import elements.Wall;
 public class GymCat implements Cat {
 	private final Body body;
     private boolean saved;
+    private boolean dead;
     
 	public GymCat(Body body) {
         saved = false;
+        dead = false;
         this.body = body;
 	}
     
-	public static GymCat createAGymCat(World world, float pos, float width, float height) {
-		return new GymCat(AbstractCat.createABody(world, pos, width, height));
+	public static GymCat createAGymCat(World world, float width, float height) {
+		return new GymCat(AbstractCat.createABody(world, width, height));
 	}
 	
 	@Override
@@ -33,6 +35,11 @@ public class GymCat implements Cat {
 	@Override
 	public boolean isSafe() {
 		return saved;
+	}
+	
+	@Override 
+	public boolean isDead() {
+		return dead;
 	}
 
 	@Override
