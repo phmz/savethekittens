@@ -57,7 +57,7 @@ public class Parser {
 					walls.add(parseWall(world, tokens[1], tokens[2]));
 					break;
 				case "Net":
-					nets.add(parseNet(tokens[1], tokens[2]));
+					nets.add(parseNet(world, tokens[1], tokens[2]));
 					break;
 				case "Bomb":
 					bombs.addAll(parseBomb(tokens[1]));
@@ -113,8 +113,9 @@ public class Parser {
 		return bombs;
 	}
 
-	private static Net parseNet(String posX, String posY) {
-		return new Net(Float.parseFloat(posX), Float.parseFloat(posY));
+	private static Net parseNet(World world, String posX, String posY) {
+		return Net.createANet(world, Float.parseFloat(posX),
+				Float.parseFloat(posY));
 	}
 
 	private static Wall parseWall(World world, String posX, String posY) {

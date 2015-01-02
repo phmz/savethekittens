@@ -95,7 +95,7 @@ public class BoardGame {
 			}
 
 			private void beginContactType(Fixture fixtureA, Fixture fixtureB) {
-				Body bodyA = fixtureA.getBody();
+			/*	Body bodyA = fixtureA.getBody();
 				Body bodyB = fixtureB.getBody();
 				Object cat = bodyB.getUserData();
 				switch((String)bodyA.getUserData()) {
@@ -112,7 +112,7 @@ public class BoardGame {
 					break;
 				default:
 					break;
-				}
+				}*/
 			}
 
 			@Override
