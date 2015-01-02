@@ -2,7 +2,9 @@ package parser;
 
 import elements.Net;
 import elements.Wall;
+import elements.bombs.Bomb;
 import elements.bombs.IBomb;
+import elements.bombs.Vortex;
 import elements.cats.Cat;
 import elements.cats.ClassyCat;
 import elements.cats.ClawedCat;
@@ -53,10 +55,10 @@ public class Parser {
 					nets.add(parseNet(tokens[1], tokens[2]));
 					break;
 				case "Bomb":
-					// bombs.add(parseBomb(tokens[1]));
+					bombs.addAll(parseBomb(tokens[1]));
 					break;
 				case "Vortex":
-					// bombs.add(parseVortex(tokens[1]));
+					bombs.addAll(parseVortex(tokens[1]));
 					break;
 				default:
 					throw new IOException("err: " + tokens[0]
@@ -79,6 +81,24 @@ public class Parser {
 		}
 
 		return new BoardGame(world, walls, cats, bombs, nets, gun);
+	}
+
+	private static List<IBomb> parseVortex(String count) {
+		List<IBomb> vortex = new ArrayList<IBomb>();
+		int nbVortex = Integer.parseInt(count);
+		for(int i = 0; i < nbVortex; i++) {
+			vortex.add(new Vortex());
+		}
+		return vortex;
+	}
+
+	private static List<IBomb> parseBomb(String count) {
+		List<IBomb> bombs = new ArrayList<IBomb>();
+		int nbBombs = Integer.parseInt(count);
+		for(int i = 0; i < nbBombs; i++) {
+			bombs.add(new Bomb());
+		}
+		return bombs;
 	}
 
 	private static Net parseNet(String posX, String posY) {
