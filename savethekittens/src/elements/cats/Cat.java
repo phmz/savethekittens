@@ -6,6 +6,7 @@ import org.jbox2d.common.Vec2;
 
 import elements.Net;
 import elements.bombs.Bomb;
+import elements.bombs.IBomb;
 
 public interface Cat {
 	public static final String USER_DATA = "Cat";
@@ -63,5 +64,5 @@ public interface Cat {
 	 * Moves the cat when there is an explosion
 	 * @param bomb
 	 */
-	void contactWithBomb(Bomb bomb);
+	void contactWithBomb(IBomb bomb);
 }
