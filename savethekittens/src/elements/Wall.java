@@ -57,7 +57,9 @@ public class Wall {
         fd.filter.categoryBits = ID_WALL;
         fd.filter.maskBits = Cat.ID_CAT;
         myBody.createFixture(fd).setUserData(USER_DATA);
-        return new Wall(myBody);
+        Wall newWall = new Wall(myBody);
+        myBody.setUserData(newWall);
+        return newWall;
     }
 
     /**

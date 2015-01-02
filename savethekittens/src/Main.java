@@ -1,7 +1,6 @@
 import java.awt.Color;
 
 import parser.Parser;
-import elements.cats.Cat;
 import fr.umlv.zen4.Application;
 import fr.umlv.zen4.ApplicationContext;
 import fr.umlv.zen4.MotionEvent;
@@ -28,10 +27,6 @@ public class Main {
 					ORIGIN_X = WIDTH / 2 - 300;
 					HEIGHT = screenInfo.getHeight();
 					ORIGIN_Y = HEIGHT / 2 - 300;
-					System.out.println("size of the screen (" + WIDTH + " x "
-							+ HEIGHT + ")");
-					System.out.println("origin of the screen (" + ORIGIN_X
-							+ " x " + ORIGIN_Y + ")");
 
 					boolean pickingBomb = false;
 					BoardGame game = null;
@@ -64,13 +59,6 @@ public class Main {
 						checkStart(pickingBomb, game, event, gui, context);
 						
 						gui.renderLevel(context, game);
-						
-						System.out.println("--------------------");
-						for(Cat cat : game.getCats()) {
-							System.out.println(event);
-							System.out.println(cat.getPosX()+" "+cat.getPosY());
-						}
-						System.out.println("--------------------");
 					}
 				});
 	}

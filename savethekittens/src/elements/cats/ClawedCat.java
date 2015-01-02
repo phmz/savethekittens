@@ -19,7 +19,10 @@ public class ClawedCat extends AbstractCat {
 	 * @return a new clawed cat
 	 */
 	public static ClawedCat createAClawedCat(World world, float width, float height) {
-		return new ClawedCat(AbstractCat.createABody(world, width, height));
+		Body body = AbstractCat.createABody(world, width, height);
+		ClawedCat clawedCat = new ClawedCat(body);
+		body.setUserData(clawedCat);
+		return clawedCat;
 	}
 
 	@Override

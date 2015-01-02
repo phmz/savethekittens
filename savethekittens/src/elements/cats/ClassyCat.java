@@ -19,7 +19,10 @@ public class ClassyCat extends AbstractCat {
 	 * @return a new classy cat
 	 */
 	public static ClassyCat createAClassyCat(World world, float width, float height) {
-		return new ClassyCat(AbstractCat.createABody(world, width, height));
+		Body body = AbstractCat.createABody(world, width, height);
+		ClassyCat newCat = new ClassyCat(body);
+		body.setUserData(newCat);
+		return newCat;
 	}
 	
 	@Override

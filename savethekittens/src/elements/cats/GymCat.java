@@ -19,7 +19,10 @@ public class GymCat extends AbstractCat {
 	 * @return a new gym cat
 	 */
 	public static GymCat createAGymCat(World world, float width, float height) {
-		return new GymCat(AbstractCat.createABody(world, width, height));
+		Body body = AbstractCat.createABody(world, width, height);
+		GymCat gymCat = new GymCat(body);
+		body.setUserData(gymCat);
+		return gymCat;
 	}
 	
 	@Override

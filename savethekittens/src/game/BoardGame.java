@@ -83,23 +83,20 @@ public class BoardGame {
 	 * @param context 
 	 */
 	public void start(GUI gui, ApplicationContext context) {
-		System.out.println("yo");
 		world.setContactListener(new ContactListener() {
 			@Override
 			public void beginContact(Contact contact) {
 				Fixture fixtureA = contact.getFixtureA();
 				Fixture fixtureB = contact.getFixtureB();
-				System.out.println(fixtureA.getUserData() + " " + fixtureB.getUserData());
-				
-				/*beginContactType(fixtureA, fixtureB);
-				beginContactType(fixtureB, fixtureA);*/
+				beginContactType(fixtureA, fixtureB);
+				beginContactType(fixtureB, fixtureA);
 			}
 
 			private void beginContactType(Fixture fixtureA, Fixture fixtureB) {
 				Body bodyA = fixtureA.getBody();
 				Body bodyB = fixtureB.getBody();
 				Object cat = bodyB.getUserData();
-				switch((String)bodyA.getUserData()) {
+				switch((String)fixtureA.getUserData()) {
 				case Wall.USER_DATA:
 					((Cat) cat).contactWithWall();
 					break;
@@ -132,9 +129,8 @@ public class BoardGame {
 		isStarted = true;
 		for(Cat cat: cats) {
 			cat.move(new Vec2(5f, 0f));
-		}	
-		System.out.println(world.getBodyCount());
-		while(!victory() || !defeat()) {
+		}
+		while(!victory() && !defeat()) {
 			update(gui, context);
 		}
 		System.out.println("C'est fini!");

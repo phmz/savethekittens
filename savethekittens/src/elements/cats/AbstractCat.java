@@ -36,7 +36,7 @@ class AbstractCat implements Cat {
 	    fd.filter.maskBits = Wall.ID_WALL | Net.ID_NET | Bomb.ID_BOMB;
 		BodyDef bod = new BodyDef();
 		bod.type = BodyType.DYNAMIC;
-		bod.position.set(20f, 190f);
+		bod.position.set(21f, 190f);
 	    Body myBody = world.createBody(bod);
 	    myBody.createFixture(fd).setUserData(USER_DATA);
 	    return myBody;
