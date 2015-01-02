@@ -27,6 +27,12 @@ import org.jbox2d.dynamics.World;
 public class Parser {
 	private static int nbBomb = 0;
 	
+	/**
+	 * Parse a file to create a new {@link BoardGame}.
+	 * @param fileName name of the file
+	 * @return a new {@link BoardGame}
+	 * @throws IOException
+	 */
 	public static BoardGame parseWorld(String fileName) throws IOException {
 		List<Wall> walls = new ArrayList<Wall>();
 		List<Cat> cats = new ArrayList<Cat>();

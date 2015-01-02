@@ -17,11 +17,21 @@ public class GUI {
 	private final float originX;
 	private final float originY;
 
+	/**
+	 * Creates a new GUI.
+	 * @param width width of the screen
+	 * @param height height of the screen
+	 */
 	public GUI(float width, float height) {
 		this.originX = width;
 		this.originY = height;
 	}
 
+	/**
+	 * Print the level on the screen.
+	 * @param context
+	 * @param boardgame
+	 */
 	public void renderLevel(ApplicationContext context, BoardGame boardgame) {
 		context.renderFrame((graphics, contentLost) -> {
 			if (contentLost) { // we need to render the whole screen
@@ -44,6 +54,10 @@ public class GUI {
 		});
 	}
 
+	/**
+	 * Fills the screen with black.
+	 * @param context
+	 */
 	public void fillScreen(ApplicationContext context) {
 		context.renderFrame((graphics, contentLost) -> {
 			fillScreen(graphics);
@@ -112,14 +126,14 @@ public class GUI {
 		});
 	}
 
-	public void renderGun(BoardGame boardGame, Graphics2D graphics) {
+	private void renderGun(BoardGame boardGame, Graphics2D graphics) {
 		graphics.setColor(boardGame.getGun().getColor());
 		graphics.fill(new Rectangle2D.Float(
 				boardGame.getGun().getX() + originX, boardGame.getGun().getY()
 						+ originY, 40f, 20f));
 	}
 
-	public void renderButton(Graphics2D graphics) {
+	private void renderButton(Graphics2D graphics) {
 		graphics.setColor(Color.RED);
 		graphics.fill(new Rectangle2D.Float(originX + 250, originY + 475, 100,
 				50));
@@ -130,7 +144,7 @@ public class GUI {
 		graphics.drawString("START", originX + 282, originY + 505);
 	}
 
-	public void renderNets(BoardGame boardGame, Graphics2D graphics) {
+	private void renderNets(BoardGame boardGame, Graphics2D graphics) {
 		for (Net net : boardGame.getNets()) {
 			renderNet(graphics, net);
 		}

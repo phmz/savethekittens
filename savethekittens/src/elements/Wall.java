@@ -13,18 +13,33 @@ public class Wall {
     private static final float width = 20.0f;
     private static final float height = 20.0f;
     
-    public Wall(Body body) {
+    private Wall(Body body) {
         this.body = body;
     }
     
+    /**
+     * Returns the width of the wall.
+     * @return width of the wall
+     */
     public float getWidth() {
 		return width;
 	}
     
+    /**
+     * Returns the height of the wall
+     * @return height of the wall
+     */
     public float getHeight() {
 		return height;
 	}
     
+    /**
+     * Creates a wall.
+     * @param world JBox2D world
+     * @param x position of the wall
+     * @param y position of the wall
+     * @return  a new wall
+     */
     public static Wall createAWall(World world, float x, float y) {
         PolygonShape poly = new PolygonShape();
         poly.setAsBox(width, height);
@@ -39,10 +54,18 @@ public class Wall {
         return new Wall(myBody);
     }
 
+    /**
+     * Returns the horizontal position of the wall.
+     * @return horizontal position of the wall
+     */
 	public float getPosX() {
 		return body.getPosition().x;
 	}
 
+	/**
+	 * Returns the vertical position of the wall.
+	 * @return vertical position of the wall
+	 */
 	public float getPosY() {
 		return body.getPosition().y;
 	}

@@ -5,8 +5,11 @@ import java.awt.Color;
 public class Bomb implements IBomb {
 	private float width;
 	private float height;
-	private int time;
 
+	/**
+	 * Creates a new bomb
+	 * @param pos position of the bomb
+	 */
 	public Bomb(float pos) {
 		width = 400f+pos;
 		height = 490f;
@@ -20,11 +23,6 @@ public class Bomb implements IBomb {
 	@Override
 	public float getPosY() {
 		return height;
-	}
-
-	@Override
-	public int getTime() {
-		return time;
 	}
 
 	@Override

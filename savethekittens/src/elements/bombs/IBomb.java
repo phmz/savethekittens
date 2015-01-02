@@ -4,26 +4,32 @@ import java.awt.Color;
 
 public interface IBomb {
 	/**
-	 * 
-	 * @return coordonate x of the bomb
+	 * Returns horizontal position of the bomb.
+	 * @return position x of the bomb
 	 */
 	float getPosX();
 
 	/**
-	 * 
-	 * @return coordonate y of the bomb
+	 * Returns vertical position of the bomb
+	 * @return posittion y of the bomb
 	 */
 	float getPosY();
 
-	/***
-	 * 
-	 * @return the time left before the bomb explodes
+	/**
+	 * Sets the position x of the bomb
+	 * @param x
 	 */
-	int getTime();
-
 	void setX(int x);
 
+	/**
+	 * Sets the position y of the bomb
+	 * @param y
+	 */
 	void setY(int y);
 
+	/**
+	 * Gets the color of the bomb
+	 * @return color of the bomb
+	 */
 	Color getColor();
 }

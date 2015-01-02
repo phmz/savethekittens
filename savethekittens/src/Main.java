@@ -51,7 +51,6 @@ public class Main {
 						} catch (InterruptedException e) {
 							throw new AssertionError(e);
 						}
-						System.out.println(event);
 
 
 						// exit if the pointer is in the top left corner of the
@@ -60,12 +59,17 @@ public class Main {
 								&& event.getX() < 20 && event.getY() < 20) {
 							context.exit(0);
 						}
-						game.getWorld().step(1/60, 6, 2);
+						
+						game.getWorld().step(1f/60f, 6, 2);
+						game.getWorld().clearForces();
+						
 						checkStart(pickingBomb, game, event);
+						
 						gui.renderLevel(context, game);
-						game.getWorld().step(1/60, 6, 2);
+						
 						System.out.println("--------------------");
 						for(Cat cat : game.getCats()) {
+							System.out.println(event);
 							System.out.println(cat.getPosX()+" "+cat.getPosY());
 						}
 						System.out.println("--------------------");

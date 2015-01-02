@@ -73,6 +73,9 @@ public class BoardGame {
     	
     }
 
+    /**
+     * Starts the game.
+     */
 	public void start() {
 		System.out.println("yo");
 		world.setContactListener(new ContactListener() {
@@ -108,30 +111,58 @@ public class BoardGame {
 		
 	}
 	
+	/**
+	 * Returns the list of the walls
+	 * @return list of the walls
+	 */
 	public List<Wall> getWalls() {
 		return walls;
 	}
 	
+	/**
+	 * Returns the list of the cats
+	 * @return list of the cats
+	 */
 	public List<Cat> getCats() {
 		return cats;
 	}
 	
+	/**
+	 * Returns the list of the bombs
+	 * @return list of the bomb
+	 */
 	public List<IBomb> getBombs() {
 		return bombs;
 	}
 	
+	/**
+	 * Returns the gun
+	 * @return the gun
+	 */
 	public Gun getGun() {
 		return gun;
 	}
 	
+	/**
+	 * Returns the list of the nets
+	 * @return list of the nets
+	 */
 	public List<Net> getNets() {
 		return nets;
 	}
 	
+	/**
+	 * Returns the JBox2D world
+	 * @return JBox2D world
+	 */
 	public World getWorld() {
 		return world;
 	}
 
+	/**
+	 * Returns true if the has started
+	 * @return true if the game has started
+	 */
 	public boolean isStarted() {
 		return isStarted;
 	}

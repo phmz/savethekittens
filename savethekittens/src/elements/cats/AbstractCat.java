@@ -49,6 +49,10 @@ class AbstractCat implements Cat {
 	    return myBody;
 	}
 
+	/**
+	 * Creates a new cat
+	 * @param body JBox2D body
+	 */
 	public AbstractCat(Body body) {
 		this.body = body;
 		saved = false;
@@ -72,7 +76,7 @@ class AbstractCat implements Cat {
 
 	@Override
 	public Color getColor() {
-		// TODO Auto-generated method stub
+		// ok
 		return null;
 	}
 
