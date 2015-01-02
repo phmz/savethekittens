@@ -8,8 +8,11 @@ public class SimpleGun implements Gun {
 
 	/**
 	 * Creates a new simple gun.
-	 * @param x horizontal position of the gun
-	 * @param y vertical position of the gun
+	 * 
+	 * @param x
+	 *            horizontal position of the gun
+	 * @param y
+	 *            vertical position of the gun
 	 */
 	public SimpleGun(float x, float y) {
 		this.x = x;

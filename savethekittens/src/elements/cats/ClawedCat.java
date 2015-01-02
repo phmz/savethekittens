@@ -6,19 +6,24 @@ import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
 
 public class ClawedCat extends AbstractCat {
-    
+
 	private ClawedCat(Body body) {
 		super(body);
 	}
-	
+
 	/**
 	 * Creates a clawed cat.
-	 * @param world JBox2D world
-	 * @param width position of the cat
-	 * @param height position of the cat
+	 * 
+	 * @param world
+	 *            JBox2D world
+	 * @param width
+	 *            position of the cat
+	 * @param height
+	 *            position of the cat
 	 * @return a new clawed cat
 	 */
-	public static ClawedCat createAClawedCat(World world, float width, float height) {
+	public static ClawedCat createAClawedCat(World world, float width,
+			float height) {
 		Body body = AbstractCat.createABody(world, width, height);
 		ClawedCat clawedCat = new ClawedCat(body);
 		body.setUserData(clawedCat);

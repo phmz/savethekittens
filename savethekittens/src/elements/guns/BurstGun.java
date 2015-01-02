@@ -8,14 +8,17 @@ public class BurstGun implements Gun {
 
 	/**
 	 * Creates a new burst gun.
-	 * @param x horizontal position of the gun
-	 * @param y vertical position of the gun
+	 * 
+	 * @param x
+	 *            horizontal position of the gun
+	 * @param y
+	 *            vertical position of the gun
 	 */
 	public BurstGun(float x, float y) {
 		this.x = x;
 		this.y = y;
 	}
-	
+
 	@Override
 	public float getX() {
 		return x;

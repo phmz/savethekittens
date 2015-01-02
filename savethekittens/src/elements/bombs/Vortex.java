@@ -8,13 +8,15 @@ public class Vortex implements IBomb {
 
 	/**
 	 * Creates a new vortex
-	 * @param pos position of the vortex
+	 * 
+	 * @param pos
+	 *            position of the vortex
 	 */
 	public Vortex(float pos) {
-		width = 400f+pos;
+		width = 400f + pos;
 		height = 490f;
 	}
-	
+
 	@Override
 	public float getPosX() {
 		return width;
@@ -32,9 +34,9 @@ public class Vortex implements IBomb {
 
 	@Override
 	public void setY(int y) {
-		height = y;	
+		height = y;
 	}
-	
+
 	@Override
 	public Color getColor() {
 		return new Color(183, 52, 216);

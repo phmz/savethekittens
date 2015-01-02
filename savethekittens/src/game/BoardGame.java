@@ -114,17 +114,17 @@ public class BoardGame {
 				Body bodyA = fixtureA.getBody();
 				Body bodyB = fixtureB.getBody();
 
-				Cat cat = (Cat)bodyB.getUserData();
+				Cat cat = (Cat) bodyB.getUserData();
 				switch ((String) fixtureA.getUserData()) {
 				case Wall.USER_DATA:
 					cat.contactWithWall();
 					break;
 				case Net.USER_DATA:
-					Net net = (Net)bodyA.getUserData();
+					Net net = (Net) bodyA.getUserData();
 					cat.contactWithNet(net);
 					break;
 				case Bomb.USER_DATA:
-					IBomb bomb = (IBomb)bodyA.getUserData();
+					IBomb bomb = (IBomb) bodyA.getUserData();
 					cat.contactWithBomb(bomb);
 					break;
 				default:
@@ -257,7 +257,9 @@ public class BoardGame {
 
 	/**
 	 * Loads a world from a file.
-	 * @param string path of the file
+	 * 
+	 * @param string
+	 *            path of the file
 	 * @return a new BoardGame
 	 */
 	public static BoardGame loadWorld(String string) {
@@ -265,8 +267,7 @@ public class BoardGame {
 		try {
 			newGame = Parser.parseWorld(string);
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			System.err.println("Wrong file format.");
 		}
 		return newGame;
 	}

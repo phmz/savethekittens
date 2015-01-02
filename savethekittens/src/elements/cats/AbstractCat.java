@@ -106,7 +106,7 @@ class AbstractCat implements Cat {
 	@Override
 	public void contactWithBomb(IBomb bomb) {
 		Vec2 impulse = new Vec2(5f, 5f);
-		Vec2 point = new Vec2(0,0);
+		Vec2 point = new Vec2(0, 0);
 		body.applyLinearImpulse(impulse, point);
 	}
 

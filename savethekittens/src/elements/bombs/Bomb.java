@@ -8,13 +8,15 @@ public class Bomb implements IBomb {
 
 	/**
 	 * Creates a new bomb
-	 * @param pos position of the bomb
+	 * 
+	 * @param pos
+	 *            position of the bomb
 	 */
 	public Bomb(float pos) {
-		width = 400f+pos;
+		width = 400f + pos;
 		height = 490f;
 	}
-	
+
 	@Override
 	public float getPosX() {
 		return width;
@@ -32,9 +34,9 @@ public class Bomb implements IBomb {
 
 	@Override
 	public void setY(int y) {
-		height = y;	
+		height = y;
 	}
-	
+
 	@Override
 	public Color getColor() {
 		return Color.BLACK;

@@ -26,10 +26,12 @@ import org.jbox2d.dynamics.World;
 
 public class Parser {
 	private static int nbBomb = 0;
-	
+
 	/**
 	 * Parse a file to create a new {@link BoardGame}.
-	 * @param fileName name of the file
+	 * 
+	 * @param fileName
+	 *            name of the file
 	 * @return a new {@link BoardGame}
 	 * @throws IOException
 	 */
@@ -44,12 +46,8 @@ public class Parser {
 				StandardCharsets.UTF_8)) {
 			String line;
 			while (null != (line = br.readLine())) {
-				// String line = br.readLine();
 				String[] tokens = line.split(" ");
 				switch (tokens[0]) {
-				/*case "Gun":
-					gun = parseGun(tokens[1], tokens[2], tokens[3]);
-					break;*/
 				case "Cat":
 					cats.add(parseCat(world, tokens[1], cats.size()));
 					break;
@@ -72,8 +70,7 @@ public class Parser {
 			}
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.err.println("Cant read file");
 		}
 
 		if (cats.size() != nets.size()) {
@@ -81,11 +78,11 @@ public class Parser {
 					+ ") different from number of nets (" + nets.size() + ").");
 		}
 
-		switch(cats.size()) {
+		switch (cats.size()) {
 		case 1:
 			gun = new SimpleGun(0.0f, 190.0f);
 			break;
-		case 2: 
+		case 2:
 			gun = new DoubleGun(0.0f, 190.0f);
 			break;
 		case 3:
@@ -98,8 +95,8 @@ public class Parser {
 	private static List<IBomb> parseVortex(String count) {
 		List<IBomb> vortex = new ArrayList<IBomb>();
 		int nbVortex = Integer.parseInt(count);
-		for(int i = 0; i < nbVortex; i++) {
-			vortex.add(new Vortex((nbBomb++)*20));
+		for (int i = 0; i < nbVortex; i++) {
+			vortex.add(new Vortex((nbBomb++) * 20));
 		}
 		return vortex;
 	}
@@ -107,8 +104,8 @@ public class Parser {
 	private static List<IBomb> parseBomb(String count) {
 		List<IBomb> bombs = new ArrayList<IBomb>();
 		int nbBombs = Integer.parseInt(count);
-		for(int i = 0; i < nbBombs; i++) {
-			bombs.add(new Bomb((nbBomb++)*20));
+		for (int i = 0; i < nbBombs; i++) {
+			bombs.add(new Bomb((nbBomb++) * 20));
 		}
 		return bombs;
 	}
@@ -136,19 +133,4 @@ public class Parser {
 			throw new IOException();
 		}
 	}
-
-	/*private static Gun parseGun(String type, String posX, String posY)
-			throws IOException {
-		switch (type) {
-		case "Simple":
-			return new SimpleGun(Float.parseFloat(posX), Float.parseFloat(posY));
-		case "Double":
-			return new DoubleGun(Float.parseFloat(posX), Float.parseFloat(posY));
-		case "Burst":
-			return new BurstGun(Float.parseFloat(posX), Float.parseFloat(posY));
-		default:
-			throw new IOException();
-		}
-	}*/
-
 }

@@ -19,8 +19,11 @@ public class GUI {
 
 	/**
 	 * Creates a new GUI.
-	 * @param width width of the screen
-	 * @param height height of the screen
+	 * 
+	 * @param width
+	 *            width of the screen
+	 * @param height
+	 *            height of the screen
 	 */
 	public GUI(float width, float height) {
 		this.originX = width;
@@ -29,8 +32,11 @@ public class GUI {
 
 	/**
 	 * Print the level on the screen.
-	 * @param context the context
-	 * @param boardgame the boardgame
+	 * 
+	 * @param context
+	 *            the context
+	 * @param boardgame
+	 *            the boardgame
 	 */
 	public void renderLevel(ApplicationContext context, BoardGame boardgame) {
 		context.renderFrame((graphics, contentLost) -> {
@@ -56,7 +62,9 @@ public class GUI {
 
 	/**
 	 * Fills the screen with black.
-	 * @param context the context
+	 * 
+	 * @param context
+	 *            the context
 	 */
 	public void fillScreen(ApplicationContext context) {
 		context.renderFrame((graphics, contentLost) -> {
@@ -117,7 +125,9 @@ public class GUI {
 
 	/**
 	 * Renders the loading screen
-	 * @param context the context
+	 * 
+	 * @param context
+	 *            the context
 	 */
 	public void loadingScreen(ApplicationContext context) {
 		context.renderFrame((graphics, contentLost) -> {
@@ -126,7 +136,7 @@ public class GUI {
 			}
 
 			graphics.setColor(Color.YELLOW);
-			graphics.drawString("Bomb'o Cat", originX+280, originY-20);
+			graphics.drawString("Bomb'o Cat", originX + 280, originY - 20);
 		});
 	}
 
@@ -178,33 +188,39 @@ public class GUI {
 
 	/**
 	 * Render the end when the level is finished
-	 * @param context the context
-	 * @param victory true if player is victorious
+	 * 
+	 * @param context
+	 *            the context
+	 * @param victory
+	 *            true if player is victorious
 	 */
 	public void renderEnd(ApplicationContext context, boolean victory) {
 		context.renderFrame((graphics, contentLost) -> {
 			Color color;
 			String str;
-			if(victory) {
+			if (victory) {
 				color = Color.YELLOW;
 				str = "VICTORY";
-			}
-			else {
+			} else {
 				color = Color.RED;
 				str = "DEFEAT";
 			}
 			graphics.setColor(Color.BLACK);
-			graphics.fill(new Rectangle2D.Float(originX+200, originY+150, 200,100));
+			graphics.fill(new Rectangle2D.Float(originX + 200, originY + 150,
+					200, 100));
 			graphics.setColor(color);
-			graphics.fill(new Rectangle2D.Float(originX+210, originY+160, 180, 80));
+			graphics.fill(new Rectangle2D.Float(originX + 210, originY + 160,
+					180, 80));
 			graphics.setColor(Color.BLACK);
-			graphics.drawString(str, originX+280, originY+205);
+			graphics.drawString(str, originX + 280, originY + 205);
 		});
 	}
 
 	/**
 	 * Renders the next button.
-	 * @param context the context
+	 * 
+	 * @param context
+	 *            the context
 	 */
 	public void renderNext(ApplicationContext context) {
 		context.renderFrame((graphics, contentlost) -> {
