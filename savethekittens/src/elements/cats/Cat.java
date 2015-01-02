@@ -2,6 +2,8 @@ package elements.cats;
 
 import java.awt.Color;
 
+import org.jbox2d.common.Vec2;
+
 import elements.Wall;
 
 public interface Cat {
@@ -40,4 +42,6 @@ public interface Cat {
 	Color getColor();
 
 	boolean isDead();
+	
+	void move(Vec2 v);
 }

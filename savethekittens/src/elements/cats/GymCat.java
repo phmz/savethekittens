@@ -2,6 +2,7 @@ package elements.cats;
 
 import java.awt.Color;
 
+import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
 
@@ -57,6 +58,13 @@ public class GymCat implements Cat {
 	@Override
 	public Color getColor() {
 		return Color.PINK;
+	}
+
+	@Override
+	public void move(Vec2 v) {
+		body.setLinearVelocity(v);
+		body.setAwake(true);
+		
 	}
 
 }

@@ -23,10 +23,9 @@ class AbstractCat {
 	    bod.type = BodyType.DYNAMIC;
 	    FixtureDef fd = new FixtureDef();
 	    fd.shape = circ;
-	    bod.position = new Vec2(0f, 190f);
+	    bod.position = new Vec2(20f, 190f);
 	    Body myBody = world.createBody(bod);
 	    myBody.createFixture(fd);
-	    myBody.setSleepingAllowed(true);
 	    return myBody;
 	}
 

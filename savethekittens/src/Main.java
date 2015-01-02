@@ -43,6 +43,7 @@ public class Main {
 					gui.renderLevel(context, game);
 
 					for (;;) {
+						
 						MotionEvent event;
 						try { // wait for a motion event
 							event = context.waitAndBlockUntilAMotion();
@@ -59,6 +60,8 @@ public class Main {
 						}
 
 						checkStart(pickingBomb, game, event);
+						game.getWorld().step(1/60, 6, 2);
+						gui.renderLevel(context, game);
 
 					}
 				});

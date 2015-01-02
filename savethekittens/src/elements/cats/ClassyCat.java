@@ -2,6 +2,7 @@ package elements.cats;
 
 import java.awt.Color;
 
+import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
 
@@ -57,6 +58,12 @@ public class ClassyCat implements Cat {
 	public boolean isDead() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void move(Vec2 v) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

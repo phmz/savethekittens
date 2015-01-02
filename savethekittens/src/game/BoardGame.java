@@ -1,7 +1,10 @@
 package game;
 
 import java.util.List;
+
+import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
+
 import elements.Net;
 import elements.Wall;
 import elements.bombs.IBomb;
@@ -65,7 +68,10 @@ public class BoardGame {
     }
 
 	public void start() {
-		// TODO Auto-generated method stub
+		System.out.println("yo");
+		for(Cat cat: cats) {
+			cat.move(new Vec2(10, 10));
+		}
 		
 	}
 	
@@ -87,5 +93,9 @@ public class BoardGame {
 	
 	public List<Net> getNets() {
 		return nets;
+	}
+	
+	public World getWorld() {
+		return world;
 	}
 }
