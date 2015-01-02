@@ -7,6 +7,7 @@ import java.awt.geom.Rectangle2D;
 
 import elements.Net;
 import elements.Wall;
+import elements.bombs.IBomb;
 import elements.cats.Cat;
 import fr.umlv.zen4.ApplicationContext;
 import game.BoardGame;
@@ -38,6 +39,7 @@ public class GUI {
 				renderCats(boardgame, graphics);
 				renderGun(boardgame, graphics);
 				renderNets(boardgame, graphics);
+				renderBombs(boardgame, graphics);
 			}
 		});
 	}
@@ -123,5 +125,16 @@ public class GUI {
 		graphics.setColor(Color.ORANGE);
 		graphics.fill(new Rectangle2D.Float(net.getPosX()+1 + originX, net
 				.getPosY()+1 + originY, net.getWidth()-2, net.getHeight()-2));
+	}
+	
+	private void renderBombs(BoardGame boardgame, Graphics2D graphics) {
+		for(IBomb bomb:boardgame.getBombs()) {
+			renderBomb(graphics, bomb);
+		}
+	}
+
+	private void renderBomb(Graphics2D graphics, IBomb bomb) {
+		graphics.setColor(bomb.getColor());
+		graphics.fill(new Ellipse2D.Float(bomb.getPosX()+originX, bomb.getPosY()+originY, 20f, 20f));
 	}
 }

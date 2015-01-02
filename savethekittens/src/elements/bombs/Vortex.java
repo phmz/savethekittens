@@ -3,35 +3,38 @@ package elements.bombs;
 import java.awt.Color;
 
 public class Vortex implements IBomb {
+	private float width;
+	private float height;
+	private int time;
+
+	public Vortex(float pos) {
+		width = 400f+pos;
+		height = 490f;
+	}
 	
 	@Override
-	public int getPosX() {
-		// TODO Auto-generated method stub
-		return 0;
+	public float getPosX() {
+		return width;
 	}
 
 	@Override
-	public int getPosY() {
-		// TODO Auto-generated method stub
-		return 0;
+	public float getPosY() {
+		return height;
 	}
 
 	@Override
 	public int getTime() {
-		// TODO Auto-generated method stub
-		return 0;
+		return time;
 	}
 
 	@Override
 	public void setX(int x) {
-		// TODO Auto-generated method stub
-		
+		width = x;
 	}
 
 	@Override
 	public void setY(int y) {
-		// TODO Auto-generated method stub
-		
+		height = y;	
 	}
 	
 	@Override

@@ -16,7 +16,6 @@ public class Main {
 	public static float ORIGIN_Y;
 
 	public static void main(String[] args) {
-		System.out.println("hello world!");
 		Application.run(Color.BLACK, context -> {
 
 			// get the size of the screen

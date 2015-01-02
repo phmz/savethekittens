@@ -8,7 +8,7 @@ public class BurstGun implements Gun {
 
 	public BurstGun(float x, float y) {
 		this.x = x;
-		this.y = y+200;
+		this.y = y;
 	}
 	
 	@Override

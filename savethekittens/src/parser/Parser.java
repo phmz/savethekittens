@@ -14,7 +14,6 @@ import elements.guns.DoubleGun;
 import elements.guns.Gun;
 import elements.guns.SimpleGun;
 import game.BoardGame;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -22,12 +21,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 
 public class Parser {
-
+	private static int nbBomb = 0;
+	
 	public static BoardGame parseWorld(String fileName) throws IOException {
 		List<Wall> walls = new ArrayList<Wall>();
 		List<Cat> cats = new ArrayList<Cat>();
@@ -42,9 +41,9 @@ public class Parser {
 				// String line = br.readLine();
 				String[] tokens = line.split(" ");
 				switch (tokens[0]) {
-				case "Gun":
+				/*case "Gun":
 					gun = parseGun(tokens[1], tokens[2], tokens[3]);
-					break;
+					break;*/
 				case "Cat":
 					cats.add(parseCat(world, tokens[1], cats.size()));
 					break;
@@ -76,10 +75,17 @@ public class Parser {
 					+ ") different from number of nets (" + nets.size() + ").");
 		}
 
-		if (null == gun) {
-			throw new IOException("err: no gun has been created.");
+		switch(cats.size()) {
+		case 1:
+			gun = new SimpleGun(0.0f, 185.0f);
+			break;
+		case 2: 
+			gun = new DoubleGun(0.0f, 185.0f);
+			break;
+		case 3:
+			gun = new BurstGun(0.0f, 185.0f);
+			break;
 		}
-
 		return new BoardGame(world, walls, cats, bombs, nets, gun);
 	}
 
@@ -87,7 +93,7 @@ public class Parser {
 		List<IBomb> vortex = new ArrayList<IBomb>();
 		int nbVortex = Integer.parseInt(count);
 		for(int i = 0; i < nbVortex; i++) {
-			vortex.add(new Vortex());
+			vortex.add(new Vortex((nbBomb++)*20));
 		}
 		return vortex;
 	}
@@ -96,7 +102,7 @@ public class Parser {
 		List<IBomb> bombs = new ArrayList<IBomb>();
 		int nbBombs = Integer.parseInt(count);
 		for(int i = 0; i < nbBombs; i++) {
-			bombs.add(new Bomb());
+			bombs.add(new Bomb((nbBomb++)*20));
 		}
 		return bombs;
 	}
@@ -114,17 +120,17 @@ public class Parser {
 			throws IOException {
 		switch (type) {
 		case "ClassyCat":
-			return ClassyCat.createAClassyCat(world, pos, 20f, 20f);
+			return ClassyCat.createAClassyCat(world, pos*20, 20f, 20f);
 		case "GymCat":
-			return GymCat.createAGymCat(world, pos, 20f, 20f);
+			return GymCat.createAGymCat(world, pos*20, 20f, 20f);
 		case "ClawedCat":
-			return ClawedCat.createAClawedCat(world, pos, 20f, 20f);
+			return ClawedCat.createAClawedCat(world, pos*20, 20f, 20f);
 		default:
 			throw new IOException();
 		}
 	}
 
-	private static Gun parseGun(String type, String posX, String posY)
+	/*private static Gun parseGun(String type, String posX, String posY)
 			throws IOException {
 		switch (type) {
 		case "Simple":
@@ -136,6 +142,6 @@ public class Parser {
 		default:
 			throw new IOException();
 		}
-	}
+	}*/
 
 }

@@ -1,9 +1,7 @@
 package game;
 
 import java.util.List;
-
 import org.jbox2d.dynamics.World;
-
 import elements.Net;
 import elements.Wall;
 import elements.bombs.IBomb;
@@ -36,8 +34,8 @@ public class BoardGame {
      */
     public void pickABomb(int x, int y) {
         for(IBomb bomb: bombs) {
-            int posX = bomb.getPosX();
-            int posY = bomb.getPosY();
+            float posX = bomb.getPosX();
+            float posY = bomb.getPosY();
             if(x > posX-20 && x < posX+20 && y > posY-20 && y < posY+20) {
                 pickingBomb = bomb;
                 break;

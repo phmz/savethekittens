@@ -7,13 +7,13 @@ public interface IBomb {
 	 * 
 	 * @return coordonate x of the bomb
 	 */
-	int getPosX();
+	float getPosX();
 
 	/**
 	 * 
 	 * @return coordonate y of the bomb
 	 */
-	int getPosY();
+	float getPosY();
 
 	/***
 	 * 
