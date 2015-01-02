@@ -3,6 +3,7 @@ import java.awt.Color;
 import parser.Parser;
 import elements.cats.Cat;
 import fr.umlv.zen4.Application;
+import fr.umlv.zen4.ApplicationContext;
 import fr.umlv.zen4.MotionEvent;
 import fr.umlv.zen4.MotionEvent.Action;
 import fr.umlv.zen4.ScreenInfo;
@@ -60,10 +61,7 @@ public class Main {
 							context.exit(0);
 						}
 						
-						game.getWorld().step(1f/60f, 6, 2);
-						game.getWorld().clearForces();
-						
-						checkStart(pickingBomb, game, event);
+						checkStart(pickingBomb, game, event, gui, context);
 						
 						gui.renderLevel(context, game);
 						
@@ -78,13 +76,13 @@ public class Main {
 	}
 
 	private static void checkStart(boolean pickingBomb, BoardGame game,
-			MotionEvent event) {
+			MotionEvent event, GUI gui, ApplicationContext context) {
 		if (!game.isStarted() && !pickingBomb && event.getAction() == Action.UP
 				&& event.getX() < 350 + ORIGIN_X
 				&& event.getX() > 250 + ORIGIN_X
 				&& event.getY() < 525 + ORIGIN_Y
 				&& event.getY() > 475 + ORIGIN_Y) {
-			game.start();
+			game.start(gui, context);
 		}
 	}
 

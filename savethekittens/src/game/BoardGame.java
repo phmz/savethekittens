@@ -14,6 +14,8 @@ import elements.Wall;
 import elements.bombs.IBomb;
 import elements.cats.Cat;
 import elements.guns.Gun;
+import fr.umlv.zen4.ApplicationContext;
+import graphics.GUI;
 
 public class BoardGame {
 	private final List<Wall> walls;
@@ -75,8 +77,9 @@ public class BoardGame {
 
     /**
      * Starts the game.
+     * @param context 
      */
-	public void start() {
+	public void start(GUI gui, ApplicationContext context) {
 		System.out.println("yo");
 		world.setContactListener(new ContactListener() {
 			
@@ -105,12 +108,40 @@ public class BoardGame {
 		});
 		isStarted = true;
 		for(Cat cat: cats) {
-			cat.move(new Vec2(10f, 10f));
+			cat.move(new Vec2(5f, 0f));
 		}	
 		System.out.println(world.getBodyCount());
-		
+		while(!victory() || !defeat()) {
+			update(gui, context);
+		}
+		System.out.println("C'est fini!");
 	}
 	
+	private void update(GUI gui, ApplicationContext context) {
+		world.step(1f/60f, 6, 2);
+		world.clearForces();
+		gui.renderLevel(context, this);
+	}
+
+
+	private boolean defeat() {
+		for(Cat cat: cats) {
+			if(cat.isDead()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private boolean victory() {
+		for(Cat cat: cats) {
+			if(!cat.isSafe()) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	/**
 	 * Returns the list of the walls
 	 * @return list of the walls
