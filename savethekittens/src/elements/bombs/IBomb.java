@@ -1,5 +1,7 @@
 package elements.bombs;
 
+import java.awt.Color;
+
 public interface IBomb {
 	/**
 	 * 
@@ -22,4 +24,6 @@ public interface IBomb {
 	void setX(int x);
 
 	void setY(int y);
+
+	Color getColor();
 }

@@ -1,5 +1,7 @@
 package elements.bombs;
 
+import java.awt.Color;
+
 public class Bomb implements IBomb {
 
 	@Override
@@ -28,6 +30,11 @@ public class Bomb implements IBomb {
 	@Override
 	public void setY(int y) {
 		// TODO Auto-generated method stub	
+	}
+	
+	@Override
+	public Color getColor() {
+		return Color.BLACK;
 	}
 
 }

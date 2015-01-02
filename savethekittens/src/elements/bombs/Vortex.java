@@ -1,5 +1,7 @@
 package elements.bombs;
 
+import java.awt.Color;
+
 public class Vortex implements IBomb {
 	
 	@Override
@@ -30,6 +32,11 @@ public class Vortex implements IBomb {
 	public void setY(int y) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public Color getColor() {
+		return new Color(183, 52, 216);
 	}
 
 }
