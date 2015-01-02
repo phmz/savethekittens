@@ -18,12 +18,26 @@ class AbstractCat {
 	 * @return JBox2D body
 	 */
 	public static Body createABody(World world, float width, float height) {
-	    CircleShape circ = new CircleShape();
+	    /*
 	    BodyDef bod = new BodyDef();
 	    bod.type = BodyType.DYNAMIC;
+	    bod.position = new Vec2(20f, 190f);*/
+		CircleShape circ = new CircleShape();
 	    FixtureDef fd = new FixtureDef();
 	    fd.shape = circ;
-	    bod.position = new Vec2(20f, 190f);
+		
+		
+		BodyDef bod = new BodyDef();
+		bod.type = BodyType.DYNAMIC;
+		bod.bullet = true;
+		bod.active = false;
+		bod.fixedRotation = false;
+		bod.position.set(20f, 190f);
+		bod.linearVelocity = new Vec2(0f,0f);
+		bod.angularVelocity = 10f;
+
+		
+		
 	    Body myBody = world.createBody(bod);
 	    myBody.createFixture(fd);
 	    return myBody;

@@ -91,17 +91,13 @@ public class GUI {
 				490 + originY, 20f, 20f));
 		if (cat.isSafe()) {
 			graphics.setColor(Color.GREEN);
-			graphics.fill(new Ellipse2D.Float(50 + 20 * pos + originX + 1,
-					490 + originY + 1, 20f - 2, 20f - 2));
 		} else if (cat.isDead()) {
 			graphics.setColor(Color.RED);
-			graphics.fill(new Ellipse2D.Float(50 + 20 * pos + originX + 1,
-					490 + originY + 1, 20f - 2, 20f - 2));
 		} else {
 			graphics.setColor(cat.getColor());
-			graphics.fill(new Ellipse2D.Float(50 + 20 * pos + originX + 1,
-					490 + originY + 1, 20f - 2, 20f - 2));
 		}
+		graphics.fill(new Ellipse2D.Float(50 + 20 * pos + originX + 1,
+				490 + originY + 1, 20f - 2, 20f - 2));
 
 	}
 

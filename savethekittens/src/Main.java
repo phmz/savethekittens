@@ -1,6 +1,7 @@
 import java.awt.Color;
 
 import parser.Parser;
+import elements.cats.Cat;
 import fr.umlv.zen4.Application;
 import fr.umlv.zen4.MotionEvent;
 import fr.umlv.zen4.MotionEvent.Action;
@@ -58,11 +59,15 @@ public class Main {
 								&& event.getX() < 20 && event.getY() < 20) {
 							context.exit(0);
 						}
-
-						checkStart(pickingBomb, game, event);
 						game.getWorld().step(1/60, 6, 2);
+						checkStart(pickingBomb, game, event);
 						gui.renderLevel(context, game);
-
+						game.getWorld().step(1/60, 6, 2);
+						System.out.println("--------------------");
+						for(Cat cat : game.getCats()) {
+							System.out.println(cat.getPosX()+" "+cat.getPosY());
+						}
+						System.out.println("--------------------");
 					}
 				});
 	}

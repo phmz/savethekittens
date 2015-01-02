@@ -62,9 +62,8 @@ public class GymCat implements Cat {
 
 	@Override
 	public void move(Vec2 v) {
+		body.setActive(true);
 		body.setLinearVelocity(v);
-		body.setAwake(true);
-		
 	}
 
 }

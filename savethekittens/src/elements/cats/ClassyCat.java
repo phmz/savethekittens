@@ -62,8 +62,9 @@ public class ClassyCat implements Cat {
 
 	@Override
 	public void move(Vec2 v) {
-		// TODO Auto-generated method stub
-		
+		body.setAwake(true);
+		body.setLinearVelocity(v);
 	}
+
 
 }

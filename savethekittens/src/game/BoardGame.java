@@ -69,9 +69,11 @@ public class BoardGame {
 
 	public void start() {
 		System.out.println("yo");
+	
 		for(Cat cat: cats) {
-			cat.move(new Vec2(10, 10));
-		}
+			cat.move(new Vec2(10f, 10f));
+		}	
+		System.out.println(world.getBodyCount());
 		
 	}
 	
