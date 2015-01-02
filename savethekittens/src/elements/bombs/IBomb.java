@@ -3,6 +3,9 @@ package elements.bombs;
 import java.awt.Color;
 
 public interface IBomb {
+	public static final String USER_DATA = "Bomb";
+	public static final int ID_BOMB = 32;
+	
 	/**
 	 * Returns horizontal position of the bomb.
 	 * @return position x of the bomb

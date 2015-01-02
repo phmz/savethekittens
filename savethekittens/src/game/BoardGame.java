@@ -28,6 +28,7 @@ public class BoardGame {
 	private final Gun gun;
 	private IBomb pickingBomb;
 	private final World world;
+	private boolean finish = false;
 
 	private boolean isStarted = false;
 
@@ -133,7 +134,7 @@ public class BoardGame {
 		while(!victory() && !defeat()) {
 			update(gui, context);
 		}
-		System.out.println("C'est fini!");
+		gui.renderEnd(context, victory());
 	}
 
 	private void update(GUI gui, ApplicationContext context) {
@@ -146,6 +147,7 @@ public class BoardGame {
 	private boolean defeat() {
 		for(Cat cat: cats) {
 			if(cat.isDead()) {
+				finish = true;
 				return true;
 			}
 		}
@@ -158,7 +160,13 @@ public class BoardGame {
 				return false;
 			}
 		}
+		finish = true;
 		return true;
+	}
+
+
+	public boolean isFinished() {
+		return finish;
 	}
 
 	/**

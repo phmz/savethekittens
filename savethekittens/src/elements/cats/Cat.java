@@ -8,6 +8,7 @@ import elements.Net;
 import elements.bombs.Bomb;
 
 public interface Cat {
+	public static final String USER_DATA = "Cat";
 	public static final int ID_CAT = 2;
 	
 	/**

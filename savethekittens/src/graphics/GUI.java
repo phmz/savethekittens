@@ -171,4 +171,25 @@ public class GUI {
 		graphics.fill(new Ellipse2D.Float(bomb.getPosX() + originX, bomb
 				.getPosY() + originY, 20f, 20f));
 	}
+
+	public void renderEnd(ApplicationContext context, boolean victory) {
+		context.renderFrame((graphics, contentLost) -> {
+			Color color;
+			String str;
+			if(victory) {
+				color = Color.YELLOW;
+				str = "VICTORY";
+			}
+			else {
+				color = Color.RED;
+				str = "DEFEAT";
+			}
+			graphics.setColor(Color.BLACK);
+			graphics.fill(new Rectangle2D.Float(originX+200, originY+150, 200,100));
+			graphics.setColor(color);
+			graphics.fill(new Rectangle2D.Float(originX+210, originY+160, 180, 80));
+			graphics.setColor(Color.BLACK);
+			graphics.drawString(str, originX+280, originY+205);
+		});
+	}
 }

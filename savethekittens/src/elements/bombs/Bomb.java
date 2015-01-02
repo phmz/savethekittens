@@ -3,8 +3,6 @@ package elements.bombs;
 import java.awt.Color;
 
 public class Bomb implements IBomb {
-	public static final String USER_DATA = "Bomb";
-	public static final int ID_BOMB = 32;
 	private float width;
 	private float height;
 

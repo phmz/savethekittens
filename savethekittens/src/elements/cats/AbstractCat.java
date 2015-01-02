@@ -16,7 +16,6 @@ import elements.bombs.Bomb;
 
 class AbstractCat implements Cat {
 
-	private static final Object USER_DATA = "Cat";
 	private final Body body;
     private boolean saved;
     private boolean dead;

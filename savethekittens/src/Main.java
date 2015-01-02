@@ -40,14 +40,15 @@ public class Main {
 					gui.renderLevel(context, game);
 
 					for (;;) {
-
+						if(!game.isFinished()) {
+							gui.renderLevel(context, game);
+						}
 						MotionEvent event = null;
 						try { // wait for a motion event
 							event = context.waitAndBlockUntilAMotion();
 						} catch (InterruptedException e) {
 							throw new AssertionError(e);
 						}
-
 
 						// exit if the pointer is in the top left corner of the
 						// screen
@@ -58,7 +59,6 @@ public class Main {
 						
 						checkStart(pickingBomb, game, event, gui, context);
 						
-						gui.renderLevel(context, game);
 					}
 				});
 	}
