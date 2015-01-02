@@ -44,14 +44,15 @@ public class Main {
 					gui.renderLevel(context, game);
 
 					for (;;) {
-						
-						MotionEvent event;
+
+						MotionEvent event = null;
 						try { // wait for a motion event
 							event = context.waitAndBlockUntilAMotion();
 						} catch (InterruptedException e) {
 							throw new AssertionError(e);
 						}
 						System.out.println(event);
+
 
 						// exit if the pointer is in the top left corner of the
 						// screen
@@ -74,7 +75,7 @@ public class Main {
 
 	private static void checkStart(boolean pickingBomb, BoardGame game,
 			MotionEvent event) {
-		if (!pickingBomb && event.getAction() == Action.UP
+		if (!game.isStarted() && !pickingBomb && event.getAction() == Action.UP
 				&& event.getX() < 350 + ORIGIN_X
 				&& event.getX() > 250 + ORIGIN_X
 				&& event.getY() < 525 + ORIGIN_Y

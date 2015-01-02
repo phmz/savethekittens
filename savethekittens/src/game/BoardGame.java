@@ -2,8 +2,12 @@ package game;
 
 import java.util.List;
 
+import org.jbox2d.callbacks.ContactImpulse;
+import org.jbox2d.callbacks.ContactListener;
+import org.jbox2d.collision.Manifold;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
+import org.jbox2d.dynamics.contacts.Contact;
 
 import elements.Net;
 import elements.Wall;
@@ -19,6 +23,8 @@ public class BoardGame {
 	private final Gun gun;
     private IBomb pickingBomb;
     private final World world;
+    
+    private boolean isStarted = false;
    
     public BoardGame(World world, List<Wall> walls, List<Cat> cats, List<IBomb> bombs, List<Net> nets, Gun gun) {
     	this.walls = walls;
@@ -69,7 +75,33 @@ public class BoardGame {
 
 	public void start() {
 		System.out.println("yo");
-	
+		world.setContactListener(new ContactListener() {
+			
+			@Override
+			public void preSolve(Contact arg0, Manifold arg1) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void postSolve(Contact arg0, ContactImpulse arg1) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void endContact(Contact arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void beginContact(Contact arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		isStarted = true;
 		for(Cat cat: cats) {
 			cat.move(new Vec2(10f, 10f));
 		}	
@@ -99,5 +131,9 @@ public class BoardGame {
 	
 	public World getWorld() {
 		return world;
+	}
+
+	public boolean isStarted() {
+		return isStarted;
 	}
 }
