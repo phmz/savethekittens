@@ -3,6 +3,7 @@ package elements;
 public class Net {
 	private static final float width = 20f;
 	private static final float height = 20f;
+	public static final String USER_DATA = "Net";
 	private final float posX;
 	private final float posY;
 

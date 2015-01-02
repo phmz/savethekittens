@@ -1,7 +1,4 @@
-Cat GymCat
 Cat ClassyCat
 Net 400.0 285.0
-Net 200.0 285.0
-Wall 300.0 205.0
 Bomb 1
 Vortex 1

@@ -4,6 +4,9 @@ import java.awt.Color;
 
 import org.jbox2d.common.Vec2;
 
+import elements.Net;
+import elements.bombs.Bomb;
+
 public interface Cat {
 	/**
 	 * Returns the horizontal position of the cat.
@@ -40,4 +43,10 @@ public interface Cat {
 	 * @param v vector of the linear velocity
 	 */
 	void move(Vec2 v);
+
+	void contactWithWall();
+
+	void contactWithNet(Net net);
+
+	void contactWithBomb(Bomb bomb);
 }

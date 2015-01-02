@@ -12,6 +12,7 @@ public class Wall {
     private final Body body;
     private static final float width = 20.0f;
     private static final float height = 20.0f;
+	public static final String USER_DATA = "Wall";
     
     private Wall(Body body) {
         this.body = body;
@@ -50,7 +51,7 @@ public class Wall {
         FixtureDef fd = new FixtureDef();
         fd.shape = poly;
         fd.friction = 1.0f;
-        myBody.createFixture(fd);
+        myBody.createFixture(fd).setUserData(USER_DATA);
         return new Wall(myBody);
     }
 
