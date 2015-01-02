@@ -11,6 +11,7 @@ import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.World;
 import org.jbox2d.dynamics.contacts.Contact;
 
+import parser.Parser;
 import elements.Net;
 import elements.Wall;
 import elements.bombs.Bomb;
@@ -56,6 +57,8 @@ public class BoardGame {
 		this.nets = nets;
 		this.gun = gun;
 		this.world = world;
+		finish = false;
+		isStarted = false;
 		generateBoundaries(0, 0);
 	}
 
@@ -250,5 +253,21 @@ public class BoardGame {
 	 */
 	public boolean isStarted() {
 		return isStarted;
+	}
+
+	/**
+	 * Loads a world from a file.
+	 * @param string path of the file
+	 * @return a new BoardGame
+	 */
+	public static BoardGame loadWorld(String string) {
+		BoardGame newGame = null;
+		try {
+			newGame = Parser.parseWorld(string);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return newGame;
 	}
 }

@@ -1,6 +1,5 @@
 import java.awt.Color;
 
-import parser.Parser;
 import fr.umlv.zen4.Application;
 import fr.umlv.zen4.ApplicationContext;
 import fr.umlv.zen4.MotionEvent;
@@ -27,22 +26,26 @@ public class Main {
 					ORIGIN_X = WIDTH / 2 - 300;
 					HEIGHT = screenInfo.getHeight();
 					ORIGIN_Y = HEIGHT / 2 - 300;
-
+					
 					boolean pickingBomb = false;
-					BoardGame game = null;
+					BoardGame game = BoardGame.loadWorld("World/World1.txt");
+					GUI gui = new GUI(ORIGIN_X, ORIGIN_Y);
+					gui.loadingScreen(context);
 					try {
-						game = Parser.parseWorld("World/World1.txt");
+						Thread.sleep(2000);
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					GUI gui = new GUI(ORIGIN_X, ORIGIN_Y);
-					gui.renderLevel(context, game);
-
 					for (;;) {
-						if(!game.isFinished()) {
+						
+						if(game.isFinished()) {
+							gui.renderNext(context);
+						}
+						else {
 							gui.renderLevel(context, game);
 						}
+						
 						MotionEvent event = null;
 						try { // wait for a motion event
 							event = context.waitAndBlockUntilAMotion();
@@ -50,6 +53,7 @@ public class Main {
 							throw new AssertionError(e);
 						}
 
+						
 						// exit if the pointer is in the top left corner of the
 						// screen
 						if (!pickingBomb && event.getAction() == Action.UP
@@ -57,21 +61,43 @@ public class Main {
 							context.exit(0);
 						}
 						
-						checkStart(pickingBomb, game, event, gui, context);
+
+						if(game.isFinished()) {
+							if(checkNext(game, event)) {
+								game = BoardGame.loadWorld("World/World2.txt");
+								continue;
+							}
+						}
+						
+						if(!pickingBomb && checkStart(game, event, gui, context)) {
+							game.start(gui, context);
+						};
 						
 					}
 				});
 	}
 
-	private static void checkStart(boolean pickingBomb, BoardGame game,
-			MotionEvent event, GUI gui, ApplicationContext context) {
-		if (!game.isStarted() && !pickingBomb && event.getAction() == Action.UP
+	private static boolean checkNext(BoardGame game, MotionEvent event) {
+		if (event.getAction() == Action.UP
 				&& event.getX() < 350 + ORIGIN_X
 				&& event.getX() > 250 + ORIGIN_X
 				&& event.getY() < 525 + ORIGIN_Y
 				&& event.getY() > 475 + ORIGIN_Y) {
-			game.start(gui, context);
+			return true;
 		}
+		return false;
+	}
+
+	private static boolean checkStart(BoardGame game,
+			MotionEvent event, GUI gui, ApplicationContext context) {
+		if (!game.isStarted() && event.getAction() == Action.UP
+				&& event.getX() < 350 + ORIGIN_X
+				&& event.getX() > 250 + ORIGIN_X
+				&& event.getY() < 525 + ORIGIN_Y
+				&& event.getY() > 475 + ORIGIN_Y) {
+			return true;
+		}
+		return false;
 	}
 
 }

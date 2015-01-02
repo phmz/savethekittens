@@ -29,8 +29,8 @@ public class GUI {
 
 	/**
 	 * Print the level on the screen.
-	 * @param context
-	 * @param boardgame
+	 * @param context the context
+	 * @param boardgame the boardgame
 	 */
 	public void renderLevel(ApplicationContext context, BoardGame boardgame) {
 		context.renderFrame((graphics, contentLost) -> {
@@ -43,7 +43,7 @@ public class GUI {
 			graphics.fill(new Rectangle2D.Float(originX, originY + 402, 600,
 					198));
 
-			renderButton(graphics);
+			renderButton(graphics, "START");
 			if (boardgame != null) {
 				renderWalls(boardgame, graphics);
 				renderGun(boardgame, graphics);
@@ -56,7 +56,7 @@ public class GUI {
 
 	/**
 	 * Fills the screen with black.
-	 * @param context
+	 * @param context the context
 	 */
 	public void fillScreen(ApplicationContext context) {
 		context.renderFrame((graphics, contentLost) -> {
@@ -115,14 +115,18 @@ public class GUI {
 
 	}
 
+	/**
+	 * Renders the loading screen
+	 * @param context the context
+	 */
 	public void loadingScreen(ApplicationContext context) {
 		context.renderFrame((graphics, contentLost) -> {
 			if (contentLost) { // we need to render the whole screen
 				fillScreen(graphics);
 			}
 
-			graphics.setColor(Color.WHITE);
-			graphics.drawString("Bomb'o Cat", originX / 2, originY / 2);
+			graphics.setColor(Color.YELLOW);
+			graphics.drawString("Bomb'o Cat", originX+280, originY-20);
 		});
 	}
 
@@ -133,7 +137,7 @@ public class GUI {
 						+ originY, 40f, 20f));
 	}
 
-	private void renderButton(Graphics2D graphics) {
+	private void renderButton(Graphics2D graphics, String string) {
 		graphics.setColor(Color.RED);
 		graphics.fill(new Rectangle2D.Float(originX + 250, originY + 475, 100,
 				50));
@@ -141,7 +145,7 @@ public class GUI {
 		graphics.fill(new Rectangle2D.Float(originX + 255, originY + 480, 90,
 				40));
 		graphics.setColor(Color.BLACK);
-		graphics.drawString("START", originX + 282, originY + 505);
+		graphics.drawString(string, originX + 282, originY + 505);
 	}
 
 	private void renderNets(BoardGame boardGame, Graphics2D graphics) {
@@ -174,8 +178,8 @@ public class GUI {
 
 	/**
 	 * Render the end when the level is finished
-	 * @param context
-	 * @param victory
+	 * @param context the context
+	 * @param victory true if player is victorious
 	 */
 	public void renderEnd(ApplicationContext context, boolean victory) {
 		context.renderFrame((graphics, contentLost) -> {
@@ -195,6 +199,16 @@ public class GUI {
 			graphics.fill(new Rectangle2D.Float(originX+210, originY+160, 180, 80));
 			graphics.setColor(Color.BLACK);
 			graphics.drawString(str, originX+280, originY+205);
+		});
+	}
+
+	/**
+	 * Renders the next button.
+	 * @param context the context
+	 */
+	public void renderNext(ApplicationContext context) {
+		context.renderFrame((graphics, contentlost) -> {
+			renderButton(graphics, "NEXT");
 		});
 	}
 }

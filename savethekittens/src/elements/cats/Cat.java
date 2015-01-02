@@ -5,7 +5,6 @@ import java.awt.Color;
 import org.jbox2d.common.Vec2;
 
 import elements.Net;
-import elements.bombs.Bomb;
 import elements.bombs.IBomb;
 
 public interface Cat {
